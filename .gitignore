@@ -4,3 +4,4 @@ config.php
 *.zip
 *.sql
 store-v2.xmind
+.idea/*

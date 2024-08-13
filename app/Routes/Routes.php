@@ -12,6 +12,7 @@ SimpleRouter::group(['prefix' => '/' .  $_ENV['BASE_PATH']], function () {
     // SimpleRouter::get('/shop', 'PagesController@shop');
     SimpleRouter::get('/products','PagesController@products');
     SimpleRouter::get('/blog','PagesController@blog');
+    SimpleRouter::get('/blog-single','PagesController@blogSingle')->name('blog-single');
     SimpleRouter::get('/about-us','PagesController@about');
     SimpleRouter::get('/contact-us','PagesController@contact');
     SimpleRouter::get('/login', "AuthController@loginView")->name('login');
@@ -23,7 +24,11 @@ SimpleRouter::group(['prefix' => '/' .  $_ENV['BASE_PATH']], function () {
     SimpleRouter::group(['middleware' => AuthMiddleware::class, 'prefix' => '/admin'], function () {
     
         SimpleRouter::get('/', 'PagesController@admin');
-        SimpleRouter::get('/dashboard', 'PagesController@admin')->name('dashboard');
+        SimpleRouter::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+        SimpleRouter::get('/product-list','AdminController@products')->name('product-list');
+        SimpleRouter::get('/mailbox','AdminController@mail')->name('mailbox');
+        SimpleRouter::get('/settings','AdminController@settings')->name('settings');
+        SimpleRouter::get('/blog','AdminController@blog')->name('blog');
     });
 
     // SimpleRouter::basic('/import', function () {

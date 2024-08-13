@@ -6,21 +6,31 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view("admin/pages/dashboard");
+        return view("admin/dashboard");
     }
 
     public function products()
     {
-        return view("admin/pages/products");
+        return view("admin/products");
     }
 
     public function settings()
     {
-        return view("admin/pages/settings");
+        return view("admin/settings");
     }
 
     public function admins()
     {
-        return view("admin/pages/admins");
+        return view("admin/admins");
+    }
+
+    public function mail()
+    {
+        return view("admin/mail");
+    }
+
+    public function blog()
+    {
+        return view("admin/blog");
     }
 }

@@ -25,6 +25,11 @@ class PagesController extends Controller
         return view("blog");
     }
 
+    public function blogSingle()
+    {
+        return view("blog-single");
+    }
+
     public function about()
     {
         return view("about");

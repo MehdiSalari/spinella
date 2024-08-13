@@ -46,10 +46,10 @@
                                     </div>
 
                                     <div class="post-text">
-                                        <h3><a href="blog-single.php">10 Reasons To Drink Coffee Every Day
+                                        <h3><a href="blog-single">10 Reasons To Drink Coffee Every Day
                                         </a></h3>
                                         <p>Saffron is a prized spice derived from the delicate stigmas of Crocus sativus flowers, known for their vibrant color and rich aroma. Spinella's premium saffron is sourced from the finest fields, where each strand is carefully harvested and dried to preserve its unparalleled quality. Native to regions with a long history of cultivation, saffron is a true treasure of nature, bringing a touch of luxury and depth to every dish.</p>
-                                        <a href="blog-single.php" class="btn-custom">Read More</a>
+                                        <a href="blog-single" class="btn-custom">Read More</a>
                                     </div>
 
 
@@ -74,10 +74,10 @@
                                     </div>
 
                                     <div class="post-text">
-                                        <h3><a href="blog-single.php">10 Reasons To Drink Coffee Every Day
+                                        <h3><a href="blog-single">10 Reasons To Drink Coffee Every Day
                                         </a></h3>
                                         <p>Saffron is a prized spice derived from the delicate stigmas of Crocus sativus flowers, known for their vibrant color and rich aroma. Spinella's premium saffron is sourced from the finest fields, where each strand is carefully harvested and dried to preserve its unparalleled quality. Native to regions with a long history of cultivation, saffron is a true treasure of nature, bringing a touch of luxury and depth to every dish.</p>
-                                        <a href="blog-single.php" class="btn-custom">Read More</a>
+                                        <a href="blog-single" class="btn-custom">Read More</a>
                                     </div>
 
 
@@ -96,10 +96,10 @@
                                     </div>
 
                                     <div class="post-text">
-                                        <h3><a href="blog-single.php">10 Reasons To Drink Coffee Every Day
+                                        <h3><a href="blog-single">10 Reasons To Drink Coffee Every Day
                                         </a></h3>
                                         <p>Saffron is a prized spice derived from the delicate stigmas of Crocus sativus flowers, known for their vibrant color and rich aroma. Spinella's premium saffron is sourced from the finest fields, where each strand is carefully harvested and dried to preserve its unparalleled quality. Native to regions with a long history of cultivation, saffron is a true treasure of nature, bringing a touch of luxury and depth to every dish.</p>
-                                        <a href="blog-single.php" class="btn-custom">Read More</a>
+                                        <a href="blog-single" class="btn-custom">Read More</a>
                                     </div>
 
 
@@ -124,10 +124,10 @@
                                     </div>
 
                                     <div class="post-text">
-                                        <h3><a href="blog-single.php">10 Reasons To Drink Coffee Every Day
+                                        <h3><a href="blog-single">10 Reasons To Drink Coffee Every Day
                                         </a></h3>
                                         <p>Saffron is a prized spice derived from the delicate stigmas of Crocus sativus flowers, known for their vibrant color and rich aroma. Spinella's premium saffron is sourced from the finest fields, where each strand is carefully harvested and dried to preserve its unparalleled quality. Native to regions with a long history of cultivation, saffron is a true treasure of nature, bringing a touch of luxury and depth to every dish.</p>
-                                        <a href="blog-single.php" class="btn-custom">Read More</a>
+                                        <a href="blog-single" class="btn-custom">Read More</a>
                                     </div>
 
 

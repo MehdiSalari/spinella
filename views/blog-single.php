@@ -107,7 +107,11 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="post-meta"><span><i class="fa fa-user id-color"></i>By: <a href="#">Lynda Wu</a></span> <span><i class="fa fa-tag id-color"></i><a href="#">News</a>, <a href="#">Events</a></span> <span><i class="fa fa-comment id-color"></i><a href="#">10 Comments</a></span></div>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-user id-color"></i>By: <a href="#">Lynda Wu</a></span>
+                                        <!-- <span><i class="fa fa-tag id-color"></i><a href="#">News</a>, <a href="#">Events</a></span> -->
+                                        <span><i class="fa fa-comment id-color"></i><a href="#">10 Comments</a></span>
+                                    </div>
                                     
                                     <div class="spacer-single"></div>
                                     
