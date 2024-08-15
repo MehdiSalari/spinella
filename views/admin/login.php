@@ -33,9 +33,10 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action="" method="post">
-					<span class="login100-form-logo">
+					<a href="<?= $_ENV['BASE_PATH'] ?>"><span class="login100-form-logo">
 						<img src="<?= assets('images/logo.png') ?>" alt="" width="200" style="margin: 20px 27.5%;">
 					</span>
+					</a>
 					<span class="login100-form-title p-b-43">
 						Login
 					</span>
@@ -98,7 +99,7 @@
 					</div> -->
 				</form>
 
-				<div class="login100-more" style="background-image: url('<?= assets('images/bg-01.jpg') ?>');">
+				<div class="login100-more" style="background-image: url('<?= assets('images/background/bg-7.jpg') ?>');">
 				</div>
 			</div>
 		</div>

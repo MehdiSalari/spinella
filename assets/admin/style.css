@@ -3686,7 +3686,7 @@ th.fc-day-header.fc-widget-header {
 /* Popup content */
 .popup-content {
     position: relative;
-    margin: 100px auto;
+    margin: 80px auto;
     /* padding: 20px; */
     background-color: transparent;
     border-radius: 10px;
@@ -3715,4 +3715,25 @@ th.fc-day-header.fc-widget-header {
     .popup-content {
         width: 90%; /* Adjust width for mobile devices */
     }
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 65px;
+    cursor: pointer;
+    width: 220px;
+    height: 40px;
+    color: white;
+}
+
+.popup-bg {
+    background-color: #1b2a47;
+    padding: 20px;
+    padding-top: 50px;
+    border-radius: 10px;
 }

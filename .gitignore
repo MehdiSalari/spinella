@@ -5,3 +5,5 @@ config.php
 *.sql
 store-v2.xmind
 .idea/*
+assets/images/products/*
+!assets/images/products/default.png

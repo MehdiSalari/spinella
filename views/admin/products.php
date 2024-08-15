@@ -6,6 +6,7 @@ $sql = 'SELECT
         INNER JOIN category 
         ON product.category_id = category.id LIMIT 10';
 $result = mysqli_query($conn, $sql);
+$products = [];
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $products[] = $row;
@@ -16,27 +17,28 @@ if (mysqli_num_rows($result) > 0) {
 <html class="no-js" lang="en">
 
 <head>
-<?php include 'layout/head.php' ?>
+    <?php include 'layout/head.php' ?>
 </head>
 
 <body>
     <!-- Start Side Bar -->
     <?php include 'components/sidebar.php' ?>
     <!-- End Side Bar -->
+
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
         <!-- Start Header Area -->
         <?php include 'components/header.php' ?>
         <!-- End Header Area -->
-        
+
         <div class="container-fluid">
-                <div class="product-status mg-b-30" style="margin-top: 100px;">
+            <div class="product-status mg-b-30" style="margin-top: 100px;">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap">
                             <h4>Products List</h4>
                             <div class="add-product">
-                                <a href="#" id="open-popup">Add Product</a>
+                                <a href="#" id="open-add-popup">Add Product</a>
                             </div>
                             <table>
                                 <tr>
@@ -50,9 +52,12 @@ if (mysqli_num_rows($result) > 0) {
                                     <th>Setting</th>
                                 </tr>
                                 <?php foreach ($products as $product): 
-                                    $status = $product['status'] == 1 ? '<span class="pd-setting">Active</span>' : '<button class="ds-setting">Inactive</button>';?>
+                                    $status = $product['status'] == 1 
+                                        ? '<button class="status-toggle pd-setting" data-id="'.$product['id'].'" data-status="1">Active</button>'
+                                        : '<button class="status-toggle ds-setting" data-id="'.$product['id'].'" data-status="0">Inactive</button>';
+                                ?>
                                 <tr>
-                                    <td><img src="<?= assets('images/products/'.$product['image'] ?? 'default.png') ?>" alt="" /></td>
+                                    <td><img style="width: 60px; height: 40px;" src="<?= assets('images/products/'.$product['image'] ?? 'default.png') ?>" alt="" /></td>
                                     <td><?= $product['title'] ?></td>
                                     <td>
                                         <?= $status ?>
@@ -62,112 +67,43 @@ if (mysqli_num_rows($result) > 0) {
                                     <td style="max-width: 200px;"><?= substr($product['description'], 0, 50).'...' ?></td>
                                     <td>$<?= $product['price'] ?></td>
                                     <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed edit-product" 
+                                            data-id="<?= $product['id'] ?>" 
+                                            data-title="<?= $product['title'] ?>" 
+                                            data-description="<?= $product['description'] ?>" 
+                                            data-stock="<?= $product['stock'] ?>" 
+                                            data-category="<?= $product['category_title'] ?>" 
+                                            data-price="<?= $product['price'] ?>" 
+                                            data-image="<?= assets('images/products/'.$product['image']) ?>"
+                                            data-action="edit">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed delete-product" data-id="<?= $product['id'] ?>" data-action="delete">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
-                                <!-- <tr>
-                                    <td><img src="img/new-product/6-small.jpg" alt="" /></td>
-                                    <td>Product Title 2</td>
-                                    <td>
-                                        <button class="ps-setting">Paused</button>
-                                    </td>
-                                    <td>60</td>
-                                    <td>$1020</td>
-                                    <td>In Stock</td>
-                                    <td>$17</td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/new-product/7-small.jpg" alt="" /></td>
-                                    <td>Product Title 3</td>
-                                    <td>
-                                        <button class="ds-setting">Disabled</button>
-                                    </td>
-                                    <td>70</td>
-                                    <td>$1050</td>
-                                    <td>Low Stock</td>
-                                    <td>$15</td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/new-product/5-small.jpg" alt="" /></td>
-                                    <td>Product Title 4</td>
-                                    <td>
-                                        <button class="pd-setting">Active</button>
-                                    </td>
-                                    <td>120</td>
-                                    <td>$1440</td>
-                                    <td>In Stock</td>
-                                    <td>$12</td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/new-product/6-small.jpg" alt="" /></td>
-                                    <td>Product Title 5</td>
-                                    <td>
-                                        <button class="pd-setting">Active</button>
-                                    </td>
-                                    <td>30</td>
-                                    <td>$540</td>
-                                    <td>Out Of Stock</td>
-                                    <td>$18</td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="img/new-product/7-small.jpg" alt="" /></td>
-                                    <td>Product Title 6</td>
-                                    <td>
-                                        <button class="ps-setting">Paused</button>
-                                    </td>
-                                    <td>400</td>
-                                    <td>$4000</td>
-                                    <td>In Stock</td>
-                                    <td>$10</td>
-                                    <td>
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr> -->
                             </table>
                             <hr>
                             <span style="color: white;">Pages</span>
                             <div class="custom-pagination" style="margin-top: -10px;">
                                 <ul class="pagination">
                                     <?php
-                                    // تعداد محصولات
                                     $count = count($products);
-                                    // تعداد صفحات
                                     $pages = ceil($count / 10);
-                                    // شماره صفحه فعلی (فرض کنیم با GET پارامتر 'page' ارسال می‌شود)
                                     $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-                                    // نمایش دکمه Previous
                                     if ($current_page > 1) {
                                         $prev_page = $current_page - 1;
                                         echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=$prev_page\">Previous</a></li>";
                                     }
 
-                                    // نمایش شماره صفحات
                                     for ($i = 1; $i <= $pages; $i++) {
                                         $active_class = ($i == $current_page) ? 'active' : '';
                                         echo "<li class=\"page-item $active_class\"><a class=\"page-link\" href=\"?page=$i\">$i</a></li>";
                                     }
 
-                                    // نمایش دکمه Next
                                     if ($current_page < $pages) {
                                         $next_page = $current_page + 1;
                                         echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=$next_page\">Next</a></li>";
@@ -180,105 +116,295 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
         </div>
-        <!-- Start Add product Pop-up form-->
-        <div id="product-popup" class="popup">
+
+        <!-- Start Add Product Pop-up Form -->
+        <div id="add-product-popup" class="popup">
             <div class="popup-content">
-                <!-- <span id="close-popup" class="close-btn">&times;</span> -->
-                <!-- محتویات فرم افزودن محصول -->
-                <div class="single-product-tab-area mg-b-30">
-                    <!-- Single pro tab review Start-->
-                    <div class="single-pro-review-area">
-                        <div class="container-fluid">
-                            <!-- محتویات پاپ‌آپ (همانطور که در کد شما آمده بود) -->
-                            <div class="review-tab-pro-inner" style="border-radius: 10px">
-                                <ul id="myTab3" class="tab-review-design">
-                                    <li class="active"><a href="#description"><i class="icon nalika-edit" aria-hidden="true"></i> Product Edit</a></li>
-                                    <!-- <li><a href="#reviews"><i class="icon nalika-picture" aria-hidden="true"></i> Pictures</a></li>
-                                    <li><a href="#INFORMATION"><i class="icon nalika-chat" aria-hidden="true"></i> Review</a></li> -->
-                                </ul>
-                                <div id="myTabContent" class="tab-content custom-product-edit">
-                                    <form action="#" method="post">
-                                    <div class="product-tab-list tab-pane fade active in" id="description">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="First Name">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Product Title">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Regular Price">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Tax">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Quantity">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Last Name">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-favorites-button" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Product Description">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Sale Price">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-like" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Category">
-                                                    </div>
-                                                    <select name="select" class="form-control pro-edt-select form-control-primary">
-                                                        <option value="opt1">Select One Value Only</option>
-                                                        <option value="opt2">2</option>
-                                                        <option value="opt3">3</option>
-                                                        <option value="opt4">4</option>
-                                                        <option value="opt5">5</option>
-                                                        <option value="opt6">6</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="text-center custom-pro-edt-ds">
-                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save</button>
-                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light"><span id="close-popup">Discard</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="popup-bg">
+            <label style="color: white;font-size: 20px;" class="page-item"><i style="margin-right: 10px" class="icon nalika-plus" aria-hidden="true"></i>Add Product</label>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <div class="product-tab-list tab-pane fade active in" id="description">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Product Title" name="productTitle" required>
                                     </div>
-                                    </form>
-                                    <!-- سایر تب ها و محتواهایی که می‌خواهید نمایش داده شوند -->
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Price" name="productPrice">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-menu-task" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Stock" name="productStock">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-folder" aria-hidden="true"></i></span>
+                                        <select name="productCategory" class="form-control pro-edt-select form-control-primary" style="cursor: pointer" required>
+                                            <option value="">Select Category</option>
+                                            <?php
+                                            $sql = 'SELECT * FROM category';
+                                            $result = mysqli_query($conn, $sql);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    $categories[] = $row;
+                                                }
+                                            }
+                                            foreach ($categories as $category): ?>
+                                                <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <img id="add-product-image" src="<?= assets('images/products/default.png') ?>" alt="" style="width: 300px; height: 150px;">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <label class="custom-file-upload">
+                                            <input type="file" id="add-image-upload" name="productImage" accept="image/*" required />
+                                            Upload Image
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row mg-b-pro-edt" style="margin: 10px 15px">
+                            <textarea class="form-control" name="productDescription" placeholder="Product Description"></textarea>
+                        </div>
+                        <div class="row" style="margin: 20px 15px;">
+                            <div class="text-center">
+                                <button name="addProduct" type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                <button type="button" class="btn btn-primary waves-effect waves-light close-popup">Cancel</button>
+                            </div>
+                        </div>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
-<!-- End Add product Pop-up form-->
+        <!-- End Add Product Pop-up Form -->
 
-        <!-- Start Footer area-->
+        <!-- Start Edit Product Pop-up Form -->
+        <div id="edit-product-popup" class="popup">
+            <div class="popup-content">
+                <div class="popup-bg">
+                <label style="color: white;font-size: 20px;" class="page-item"><i style="margin-right: 10px" class="icon nalika-edit" aria-hidden="true"></i>Edit Product</label>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="productId" id="edit-product-id">
+                    <div class="product-tab-list tab-pane fade active in" id="description">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Product Title" name="productTitle" id="edit-product-title" required>
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Price" name="productPrice" id="edit-product-price">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-menu-task" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Stock" name="productStock" id="edit-product-stock">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-folder" aria-hidden="true"></i></span>
+                                        <select name="productCategory" class="form-control pro-edt-select form-control-primary" id="edit-product-category" style="cursor: pointer" required>
+                                        <!-- <option value="">Select Category</option> -->
+                                            <?php
+                                            // $sql = 'SELECT * FROM category';
+                                            // $result = mysqli_query($conn, $sql);
+                                            // if (mysqli_num_rows($result) > 0) {
+                                            //     while ($row = mysqli_fetch_assoc($result)) {
+                                            //         $categories[] = $row;
+                                            //     }
+                                            // }
+                                            foreach ($categories as $category): ?>
+                                                <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <img id="edit-product-image" src="<?= assets('images/products/default.png') ?>" alt="" style="width: 300px; height: 150px;">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <label class="custom-file-upload">
+                                            <input type="file" id="edit-image-upload" name="productImage" accept="image/*" />
+                                            Upload Image
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mg-b-pro-edt" style="margin: 10px 15px">
+                            <textarea class="form-control" name="productDescription" id="edit-product-description" placeholder="Product Description"></textarea>
+                        </div>
+                        <div class="row" style="margin: 20px 15px;">
+                            <div class="text-center">
+                                <button name="editProduct" type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                                <button type="button" class="btn btn-primary waves-effect waves-light close-popup">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Edit Product Pop-up Form -->
+
+        <!-- Start Footer -->
         <?php include 'components/footer.php' ?>
-        <!-- End Footer area-->
+        <!-- End Footer -->
+
     </div>
 
-    <?php include 'layout/scripts.php' ?>;
+    <script>
+        // JavaScript Code for Handling Popups and Data Transfer
+        document.addEventListener('DOMContentLoaded', function () {
+            // Open Add Product Popup
+            document.getElementById('open-add-popup').addEventListener('click', function () {
+                document.getElementById('add-product-popup').style.display = 'block';
+            });
+
+            // Edit Product - Open Edit Popup and Fill the Data
+            document.querySelectorAll('.edit-product').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var productId = this.getAttribute('data-id');
+                    var title = this.getAttribute('data-title');
+                    var description = this.getAttribute('data-description');
+                    var stock = this.getAttribute('data-stock');
+                    var category = this.getAttribute('data-category');
+                    var price = this.getAttribute('data-price');
+                    var image = this.getAttribute('data-image');
+
+                    // Set the values in the edit form
+                    document.getElementById('edit-product-id').value = productId;
+                    document.getElementById('edit-product-title').value = title;
+                    document.getElementById('edit-product-description').value = description;
+                    document.getElementById('edit-product-stock').value = stock;
+                    document.getElementById('edit-product-category').value = category;
+                    document.getElementById('edit-product-price').value = price;
+                    document.getElementById('edit-product-image').src = image;
+
+                    // Open the edit product popup
+                    document.getElementById('edit-product-popup').style.display = 'block';
+                });
+            });
+
+            // Close Popup Forms
+            document.querySelectorAll('.close-popup').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    this.closest('.popup').style.display = 'none';
+                    const image = document.getElementById('add-product-image');
+                    image.src = '<?= assets("images/products/default.png") ?>';
+                });
+            });
+        });
+
+        document.getElementById('add-image-upload').addEventListener('change', function(event) {
+            const image = document.getElementById('add-product-image');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('edit-image-upload').addEventListener('change', function(event) {
+            const image = document.getElementById('edit-product-image');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+        // Delete product
+        document.querySelectorAll('.delete-product').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-id');
+                if(confirm("Are you sure you want to delete this product?")) {
+                    $.ajax({
+                        url: '<?= url('product-list') ?>',
+                        type: 'POST',
+                        data: { id: productId, action: 'deleteProduct' },
+                        success: function(response) {
+                            if (response == 'success') {
+                                // alert('Product deleted successfully.');
+                                location.reload();
+                            } else {
+                                alert('Failed to delete product.' + response);
+                            }
+                        }
+                    })
+                }
+            });
+        });
+
+
+        //update status
+        $(document).ready(function() {
+            $('body').on('click', '.status-toggle', function() {
+                var button = $(this);
+                var productId = button.data('id'); 
+                var currentStatus = button.data('status');
+                var newStatus = currentStatus == 1 ? 0 : 1;
+
+                
+                
+                // غیرفعال کردن دکمه
+                button.attr('disabled', true);
+                button.css('background-color', 'gray');
+
+                $.ajax({
+                    url: '<?= url('product-list') ?>',
+                    type: 'POST',
+                    data: { id: productId, status: newStatus, action: 'updateStatus' },
+                    success: function(response) {
+                        if (response == 'success') {
+                            if (newStatus == 1) {
+                                button.data('status', 1).html('Active').removeClass('ds-setting').addClass('pd-setting');
+                            } else {
+                                button.data('status', 0).html('Inactive').removeClass('pd-setting').addClass('ds-setting');
+                            }
+                        } else {
+                            alert('Failed to update status.' + response);
+                        }
+                    },
+                    error: function() {
+                        alert('Error in AJAX request.');
+                    }
+                });
+
+                // فعال کردن دکمه بعد از 3 ثانیه
+                setTimeout(function() {
+                    button.attr('disabled', false);
+                    button.removeAttr('style');
+                }, 1500);
+            });
+        });
+
+    </script>
+    <?php include 'layout/scripts.php' ?>
 </body>
 
 </html>

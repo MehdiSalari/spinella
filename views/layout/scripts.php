@@ -40,15 +40,15 @@
         });
     });
 
-    var lang = document.getElementById("lang");
-    // on hover
-    lang.onmouseover = function () {
-        lang.classList.add("active");
-    }
-    // on hover
-    lang.onmouseout = function () {
-        lang.classList.remove("active");
-    }
+    // var lang = document.getElementById("lang");
+    // // on hover
+    // lang.onclick = function () {
+    //     lang.classList.add("active");
+    // }
+    // // on hover
+    // lang.onmouseout = function () {
+    //     lang.classList.remove("active");
+    // }
 
 
     function h_center_logo2() {

@@ -103,25 +103,42 @@
 
 
 
-// Get the elements
-const popup = document.getElementById('product-popup');
-const openPopupBtn = document.getElementById('open-popup');
-const closePopupBtn = document.getElementById('close-popup');
+// // Get the elements
+// const popup = document.getElementById('product-popup');
+// const openPopupBtn = document.getElementById('open-popup');
+// const closePopupBtn = document.getElementById('close-popup');
+// const image = document.getElementById('productImage');
 
-// Open the popup
-openPopupBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    popup.style.display = 'block';
-});
+// // Open the popup
+// openPopupBtn.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     popup.style.display = 'block';
+// });
 
-// Close the popup
-closePopupBtn.addEventListener('click', function() {
-    popup.style.display = 'none';
-});
+// // Close the popup
+// closePopupBtn.addEventListener('click', function() {
+//     popup.style.display = 'none';
+// 	image.src = '<?= assets("images/product/default.png") ?>';
+// });
 
-// Close the popup when clicking outside the content
-window.addEventListener('click', function(event) {
-    if (event.target == popup) {
-        popup.style.display = 'none';
-    }
-});
+// // Close the popup when clicking outside the content
+// window.addEventListener('click', function(event) {
+//     if (event.target == popup) {
+//         popup.style.display = 'none';
+//     }
+// });
+
+
+// document.getElementById('imageUpload').addEventListener('change', function(event) {
+// 	const image = document.getElementById('productImage');
+// 	const file = event.target.files[0];
+// 	const reader = new FileReader();
+	
+// 	reader.onload = function(e) {
+// 		image.src = e.target.result;
+// 	}
+	
+// 	if (file) {
+// 		reader.readAsDataURL(file);
+// 	}
+// });
