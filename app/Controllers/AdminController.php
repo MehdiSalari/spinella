@@ -120,8 +120,38 @@ class AdminController extends Controller
             header("location: ".url('product-list'));
         }
 
+        // edit category
+        elseif (isset($_POST['editCategory'])) {
+            $categoryId = $_POST['categoryId'];
+            $categoryTitle = $_POST['categoryTitle'];
+
+            $sql = "UPDATE category SET title = '$categoryTitle' WHERE id = '$categoryId'";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                // echo 'success';
+            } else {
+                echo 'error' . mysqli_error($conn);die;
+            }
+            header("location: ".url('product-list'));
+        }
+
+        //add category
+        elseif (isset($_POST['addCat'])) {
+            $categoryTitle = $_POST['addCategory'];
+
+            $sql = "INSERT INTO category (title) VALUES ('$categoryTitle')";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                // echo 'success';
+            } else {
+                echo 'error' . mysqli_error($conn);die;
+            }
+            header("location: ".url('product-list'));
+        }
+
         // Update product status
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'updateStatus') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action']) && $_POST['action'] == 'updateStatus') {
                 $id = $_POST['id'];
                 $status = $_POST['status'];
             
@@ -138,7 +168,7 @@ class AdminController extends Controller
         
 
         // Delete product
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'deleteProduct') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action']) && $_POST['action'] == 'deleteProduct') {
             $id = $_POST['id'];
 
             // حذف محصول
@@ -151,12 +181,298 @@ class AdminController extends Controller
                 echo 'error' . mysqli_error($conn);
             }
         }
+
+        // Delete category
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action']) && $_POST['action'] == 'deleteCategory') {
+            $id = $_POST['id'];
+
+            $sql = 'SELECT * FROM product WHERE category_id = ' . $id;
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                echo 'Cannot delete this category because it has products associated with it.';
+            }
+            else {
+                // حذف دسته بندی
+                $sql = "DELETE FROM category WHERE id = '$id'";
+                $result = mysqli_query($conn, $sql);
+    
+                if ($result) {
+                    echo 'success';
+                } else {
+                    echo 'error' . mysqli_error($conn);
+                }
+            }
+
+        }
     }
     
 
     public function settings()
     {
         return view("admin/settings");
+    }
+
+    public function settingsConfig()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['set'])) {
+            $data = [
+                'slider' => [
+                    'slider1' => [
+                        'title' => $_POST['sliderTitle1'],
+                        'subtitle' => $_POST['sliderSub1'],
+                        'text' => $_POST['sliderText1'],
+                        'image' => 'slide-1.jpg'
+                    ],
+                    'slider2' => [
+                        'title' => $_POST['sliderTitle2'],
+                        'subtitle' => $_POST['sliderSub2'],
+                        'text' => $_POST['sliderText2'],
+                        'image' => 'slide-2.jpg'
+                    ],
+                    'slider3' => [
+                        'title' => $_POST['sliderTitle3'],
+                        'subtitle' => $_POST['sliderSub3'],
+                        'text' => $_POST['sliderText3'],
+                        'image' => 'slide-3.jpg'
+                    ]
+                ],
+                'interview' => [
+                    'title' => $_POST['interviewTitle'],
+                    'subtitle' => $_POST['interviewSub'],
+                    'text' => urlencode($_POST['interviewText']),
+                    'image' => 'bg-1.jpg'
+                ],
+                'why' => [
+                    'why1' => [
+                        'title' => $_POST['whyTitle1'],
+                        'text' => urlencode($_POST['whyText1'])
+                    ],
+                    'why2' => [
+                        'title' => $_POST['whyTitle2'],
+                        'text' => urlencode($_POST['whyText2'])
+                    ],
+                    'why3' => [
+                        'title' => $_POST['whyTitle3'],
+                        'text' => urlencode($_POST['whyText3'])
+                    ],
+                    'why4' => [
+                        'title' => $_POST['whyTitle4'],
+                        'text' => urlencode($_POST['whyText4'])
+                    ]
+                ],
+                'banner' => [
+                    'banner1' => [
+                        'title' => $_POST['bannerTitle1'],
+                        'text' => $_POST['bannerSub1'],
+                        'image' => 'bg-2.jpg'
+                    ],
+                    'banner2' => [
+                        'title' => $_POST['bannerTitle2'],
+                        'text' => $_POST['bannerSub2'],
+                        'image' => 'bg-4.jpg'
+                    ]
+                ],
+                'products' => [
+                    'title' => $_POST['productTitle'],
+                    'image' => 'bg-3.jpg',
+                    'product1' => [
+                        'name' => $_POST['productName1'],
+                        'desc' => $_POST['productDesc1']
+                    ],
+                    'product2' => [
+                        'name' => $_POST['productName2'],
+                        'desc' => $_POST['productDesc2']
+                    ],
+                    'product3' => [
+                        'name' => $_POST['productName3'],
+                        'desc' => $_POST['productDesc3']
+                    ],
+                    'product4' => [
+                        'name' => $_POST['productName4'],
+                        'desc' => $_POST['productDesc4']
+                    ],
+                    'product5' => [
+                        'name' => $_POST['productName5'],
+                        'desc' => $_POST['productDesc5']
+                    ]
+                ],
+                'desc' => [
+                    'text' => urlencode($_POST['descText']),
+                    'image' => 'bg-5.jpg'
+                ],
+                'gallery' => [
+                    'image1' => 'pf%20(1)',
+                    'image2' => 'pf%20(2)',
+                    'image3' => 'pf%20(3)',
+                    'image4' => 'pf%20(4)',
+                    'image5' => 'pf%20(5)',
+                    'image6' => 'pf%20(6)'
+                ],
+                'recipe' => [
+                    'title' => $_POST['recipeTitle'],
+                    'subtitle' => $_POST['recipeSub'],
+                    'text' => urlencode($_POST['recipeText']),
+                    'image' => 'bg-side-1.jpg'
+                ],
+                'slogan' => [
+                    'title' => $_POST['sloganTitle'],
+                ],
+                'footer' => [
+                    'contact' => [
+                        'address' => $_POST['footerAddress'],
+                        'phone' => $_POST['footerPhone'],
+                        'email' => $_POST['footerEmail']
+                    ],
+                    'info' => [
+                        'logo' => 'footer-logo1.png',
+                        'desc' => $_POST['footerDesc']
+                    ],
+                    'social' => [
+                        'fb' => $_POST['footerFb'],
+                        'ig' => $_POST['footerIg'],
+                        'wa' => $_POST['footerWa'],
+                        'tg' => $_POST['footerTg'],
+                        'sk' => $_POST['footerSk']
+                    ]
+                ]
+            ];
+
+            if (isset($_FILES['sliderImg1']) && $_FILES['sliderImg1']['error'] == 0) {
+                $file = $_FILES['sliderImg1'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/slider/slide-1.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['sliderImg2']) && $_FILES['sliderImg2']['error'] == 0) {
+                $file = $_FILES['sliderImg2'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/slider/slide-2.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['sliderImg3']) && $_FILES['sliderImg3']['error'] == 0) {
+                $file = $_FILES['sliderImg3'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/slider/slide-3.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['interviewImg']) && $_FILES['interviewImg']['error'] == 0) {
+                $file = $_FILES['interviewImg'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-1.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['bannerImg1']) && $_FILES['bannerImg1']['error'] == 0) {
+                $file = $_FILES['bannerImg1'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-2.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['bannerImg2']) && $_FILES['bannerImg2']['error'] == 0) {
+                $file = $_FILES['bannerImg2'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-4.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['productImg']) && $_FILES['productImg']['error'] == 0) {
+                $file = $_FILES['productImg'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-3.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            if (isset($_FILES['descImg']) && $_FILES['descImg']['error'] == 0) {
+                $file = $_FILES['descImg'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-5.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+            // gallery images
+                if (isset($_FILES['galleryImg1']) && $_FILES['galleryImg1']['error'] == 0) {
+                    $file = $_FILES['galleryImg1'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(1).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(1).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+                if (isset($_FILES['galleryImg2']) && $_FILES['galleryImg2']['error'] == 0) {
+                    $file = $_FILES['galleryImg2'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(2).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(2).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+                if (isset($_FILES['galleryImg3']) && $_FILES['galleryImg3']['error'] == 0) {
+                    $file = $_FILES['galleryImg3'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(3).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(3).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+                if (isset($_FILES['galleryImg4']) && $_FILES['galleryImg4']['error'] == 0) {
+                    $file = $_FILES['galleryImg4'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(4).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(4).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+                if (isset($_FILES['galleryImg5']) && $_FILES['galleryImg5']['error'] == 0) {
+                    $file = $_FILES['galleryImg5'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(5).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(5).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+                if (isset($_FILES['galleryImg6']) && $_FILES['galleryImg6']['error'] == 0) {
+                    $file = $_FILES['galleryImg6'];
+                    $fileTmpName = $file['tmp_name'];
+
+                    $target1 = storage('assets/images/menu/pf%20(6).jpg');
+                    $target2 = storage('assets/images/menu/view/pf%20(6).jpg');
+
+                    move_uploaded_file($fileTmpName, $target1);
+                    move_uploaded_file($fileTmpName, $target2);
+                }
+            if (isset($_FILES['recipeImg']) && $_FILES['recipeImg']['error'] == 0) {
+                $file = $_FILES['recipeImg'];
+                $fileTmpName = $file['tmp_name'];
+
+                $target = storage('assets/images/background/bg-side-1.jpg');
+                move_uploaded_file($fileTmpName, $target);
+            }
+
+            $json = json_encode($data, JSON_UNESCAPED_UNICODE);
+            $sql = "UPDATE settings SET json = '$json' WHERE page = 'home'";
+            $result = mysqli_query($this->conn, $sql);
+
+            if ($result) {
+                header("location: " . url('settings'));
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);die;
+            }
+        }
+
     }
 
     public function admins()
@@ -172,5 +488,10 @@ class AdminController extends Controller
     public function blog()
     {
         return view("admin/blog");
+    }
+
+    public function blogDetails()
+    {
+        return view("admin/blog-details");
     }
 }

@@ -44,4 +44,10 @@ class PagesController extends Controller
     {
         return view("admin/dashboard");
     }
+
+
+    //Farsi Language
+    public function homeFa() {
+        return view("fa/home");
+    }
 }

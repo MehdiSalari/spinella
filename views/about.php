@@ -20,7 +20,7 @@
                             <h2 class="s1 mb-40">Discover</h2>
                             <h2 class="s2">Our Story</h2>
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                              <li class="breadcrumb-item"><a href="<?= $_ENV['BASE_PATH'] ?>">Home</a></li>
                               <li class="breadcrumb-item active" aria-current="page">About</li>
                             </ol>
                         </div>

@@ -6497,13 +6497,6 @@ i.icon-big {
 	font-size: 40px;
 }
 
-@media screen and (max-width: 768px) {
-
-	.custom-desc {
-		font-size: 2rem !important;
-	}
-}
-
 /* Basic styling for the language menu */
 .lang {
 	position: absolute;
@@ -6543,9 +6536,85 @@ i.icon-big {
     display: block;
 }
 
+@media (min-width: 990px) {
+	.footer-line {
+		display: none;
+	}
+
+	.mobile-img-jarallax {
+		display: none;
+	}
+}
+
+.cij {
+	background-image: url("../images/background/bg-5.jpg");
+	background-size: cover;
+}
+
 
 /* Media query for mobile devices */
 @media (max-width: 990px) {
+	.first-img {
+		display: none;
+	}
+	
+	.wow::before {
+		display: none;
+	}
+
+	.wow p {
+		text-align: center;
+	}
+
+	.basket {
+		font-size: 10px;
+	}
+
+	.desktop-img-jarallax {
+		display: none;
+	}
+	
+	.cij {
+		background-image: url("../images/background/bg-5-mobile.jpg");
+		background-size: cover;
+	}
+
+	.custom-desc {
+		font-size: 1.2rem !important;
+		backdrop-filter: blur(10px) !important;
+		-webkit-backdrop-filter: blur(10px);
+		-moz-backdrop-filter: blur(10px);
+		-ms-backdrop-filter: blur(10px);
+		-o-backdrop-filter: blur(10px);
+		background-color: rgba(255, 255, 255, 0.8);
+		padding: 1rem;
+		margin: 0 5px;
+		border-radius: 5px;
+		color: #000 !important;
+	}
+
+	.custom-quote {
+		padding: 80px 20px !important;
+	}
+
+	.quick-links {
+		display: none;
+	}
+
+	.footer-line {
+		/* display: block; */
+		height: 2px;
+		border: 0;
+		border-top: 1px solid #cccccc;
+		background: #cccccc;
+		/* background-color: #cccccc; */
+		/* backdrop-filter: blur(0px) !important; */
+		margin: 1.5em 0;
+		width: 100%;
+		/* padding: 0; */
+	}
+	
+
     .lang {
         position: absolute;
 		right: 30px;
@@ -6580,4 +6649,20 @@ i.icon-big {
     .lang-dropdown a {
         padding: 10px 15px; /* Adjust padding for mobile view */
     }
+
+	.custom-header-text {
+		display: none;
+	}
+
+	.custom-header-subtitle {
+		font-size: 1.5rem !important;
+	}
+
+	.custom-header-title {
+		font-size: 3rem !important;
+	}
+
+	.lead {
+		text-align: justify;
+	}
 }

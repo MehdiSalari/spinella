@@ -1,3 +1,4 @@
+<input type="hidden" id="base_path" value="<?= $_ENV['BASE_PATH'] ?>">
 <!-- Javascript Files
 ================================================== -->
 <script src="<?= assets('js/plugins.js') ?>"></script>
@@ -53,11 +54,12 @@
 
     function h_center_logo2() {
         var position = jQuery(".header_center ul#mainmenu > li").length;
+        var base_path = jQuery("#base_path").val();
 
         var i = 0;
         jQuery('.header_center ul#mainmenu > li').each(function() {
             if (i == Math.floor(position / 2) - 1) {
-                jQuery(this).after('<li class="logo_pos"><a href="<?= $_ENV['BASE_PATH'] ?>"><img class="c_logo_light" src="' + logo_dir_1 + '"/><img class="c_logo_dark" src="' + logo_dir_2 + '"/></a></li>');
+                jQuery(this).after('<li class="logo_pos"><a href="' + base_path + '"><img class="c_logo_light" src="' + logo_dir_1 + '"/><img class="c_logo_dark" src="' + logo_dir_2 + '"/></a></li>');
             }
             i++;
         });

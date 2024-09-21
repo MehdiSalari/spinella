@@ -3022,12 +3022,20 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
 }
 .blog-img img {
     margin-bottom: 10px;
+    /* width: 100%; */
 }
 .blog-image {
+    /* padding: auto; */
+    /* margin: auto; */
     position: relative;
+    /* width: 100%; */
+    /* make it center */
+    text-align: center;
+
 }
 .blog-image img{
 	border: 1px solid rgba(0,0,0,.12);
+    border-radius: 10px;
 }
 .blog-date {
     background: #e12503 none repeat scroll 0 0;
@@ -3036,7 +3044,7 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
     bottom: -25px;
     color: #fff;
     height: 70px;
-    left: 0;
+    left: 200px;
     line-height: 15px;
     position: absolute;
     text-align: center;
@@ -3056,9 +3064,10 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
 .details-blog-dt {
     margin-left: 60px;
     margin-bottom: 20px;
+    text-align: center;
 }
 .details-blog-dt a, .details-blog-dt a:hover, .details-blog-dt a:focus {
-    color: #222;
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
@@ -3066,12 +3075,12 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
 .blog-details a.blog-ht, .blog-details a.blog-ht:hover, .blog-details a.blog-ht:focus {
     font-size: 20px;
     font-weight: 700;
-    color: #222;
+    color: #fff;
     text-transform: capitalize;
     text-decoration: none;
 }
 .blog-details p {
-    color: #222;
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -3112,7 +3121,7 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
     text-align: center;
 }
 .comment-head h3, .comment-details h4, .lead-head h3 {
-    color: #222;
+    color: #fff;
     font-size: 16px;
     font-weight: 700;
 }
@@ -3121,7 +3130,7 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
     display: inline-block;
 }
 .comment-details p {
-    color: #222;
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;

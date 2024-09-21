@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$sql = 'SELECT 
+            product.*, 
+            category.title AS category_title 
+        FROM product 
+        INNER JOIN category 
+        ON product.category_id = category.id LIMIT 10';
+$result = mysqli_query($conn, $sql);
+$products = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+    }
+}
 
+$sql = 'SELECT * FROM category';
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $categories[] = $row;
+    }
+}
+?>
 <?php include 'layout/head.php' ?>
 
 <body class="page-menu">
@@ -36,12 +58,18 @@
         <section aria-label="section">
             <div class="container">
                 <div class="col-md-12">
-                    <ul id="filters" class="wow fadeInUp" data-wow-delay="0s">
+                    <!-- <ul id="filters" class="wow fadeInUp" data-wow-delay="0s">
                         <li><a href="#" data-filter="*" class="selected">All</a></li>
                         <li><a href="#" data-filter=".coffee">Saffron</a></li>
                         <li><a href="#" data-filter=".non-coffee">Pistachio</a></li>
                         <li><a href="#" data-filter=".main-dishes">Nuts</a></li>
                         <li><a href="#" data-filter=".breads">Dried Fruits</a></li>
+                    </ul> -->
+                    <ul id="filters" class="wow fadeInUp" data-wow-delay="0s">
+                        <li><a href="#" data-filter="*" class="selected">All</a></li>
+                        <?php foreach ($categories as $category) { ?>
+                        <li><a href="#" data-filter=".cat<?= $category['id'] ?>"><?= $category['title'] ?></a></li>
+                        <?php } ?>
                     </ul>
                     <div class="spacer-single"></div>
                 </div>
@@ -50,12 +78,13 @@
             <div class="container">
                 <div id="gallery" class="row g-4">
                     <!-- Item -->
-                    <div class="col-lg-4 item coffee">
+                    <?php foreach ($products as $product) { ?>
+                    <div class="col-lg-4 item cat<?= $product['category_id'] ?>">
                         <div class="pb-3 shadow">
                             <div style="border-radius:1rem">
                                 <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
                                     <a>
-                                        <img src="<?= assets('images/gallery/1.jpg') ?>" alt="">
+                                        <img src="<?= assets("images/products/" . $product['image']) ?>" alt="">
                                     </a>
                                 </figure>
                                 <div class="mt-3 px-3 rounded-20">
@@ -63,15 +92,16 @@
                                         cum
                                         dolorem eaque </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
+                                        <p class="text-danger m-0"><?= $product['title'] ?></p>
+                                        <a href="single?id=<?= $product['id'] ?>" class="px-3 py-1 rounded-1 btn-danger">Show</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
 
-                    <div class="col-lg-4 item non-coffee">
+                    <!-- <div class="col-lg-4 item non-coffee">
                         <div class="pb-3 shadow">
                             <div style="border-radius:1rem">
                                 <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
@@ -174,7 +204,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 

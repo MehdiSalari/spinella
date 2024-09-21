@@ -5,7 +5,7 @@
                     <div class="col-lg-12">
                         <!-- logo begin -->
                         <div id="logo">
-                            <a href="">
+                            <a href="<?= $_ENV['BASE_PATH'] ?>">
                                 <img class="logo logo_dark_bg" src="<?= assets('images/logo.png') ?>" alt="">
                                 <img class="logo logo_light_bg" src="<?= assets('images/logo.png') ?>" alt="">
                             </a>
@@ -47,4 +47,10 @@
                 </div>
             </div>
         </header>
+        <input type="hidden" id="base_path" value="<?= $_ENV['BASE_PATH'] ?>">
         <!-- header close -->
+<?php
+$sql = 'SELECT * FROM settings WHERE page = "home" LIMIT 1';
+$result = $conn->query($sql)->fetch_assoc();
+$content = json_decode($result['json'], true);
+?>
