@@ -1,0 +1,8 @@
+vendor/
+# .env
+config.php
+*.zip
+store-v2.xmind
+# .idea/*
+# assets/images/products/*
+!assets/images/products/default.png
