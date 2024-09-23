@@ -1,5 +1,6 @@
 @extends('layout.master')
 
+@section('content')
 <!-- <style>
     footer {
         margin-bottom: -27px;
@@ -431,3 +432,4 @@
             <!-- section close -->
 
         </div>
+@endsection

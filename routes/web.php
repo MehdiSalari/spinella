@@ -10,6 +10,7 @@ Route::get('/en', [pageController::class, 'home'])->name('home');
 Route::get('/blog', [pageController::class, 'blog'])->name('blog');
 Route::get('/contact-us', [pageController::class, 'contact'])->name('contact-us');
 Route::get('/about-us', [pageController::class, 'about'])->name('about-us');
+Route::get('/products', [pageController::class, 'products'])->name('products');
 
 Route::get('/en' , function () {
     return redirect('/');

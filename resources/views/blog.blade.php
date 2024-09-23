@@ -1,5 +1,6 @@
 @extends('layout.master')
 
+@section('content')
 <!-- <body class="page-menu"> -->
         <!-- header begin -->
         <!-- header close -->
@@ -141,6 +142,7 @@
 			
 
         </div>
+        @endsection
 
         <!-- footer begin -->
         <!-- footer close -->
