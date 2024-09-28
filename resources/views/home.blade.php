@@ -30,7 +30,7 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:200;e:Power2.easeInOut;" data-start="500"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                <span class="id-color-2">{{ $settings->json['slider']['slider1']['title'] }}</span>
+                                <span class="id-color-2">{{ __('home.slider.slider1.title') }}</span>
                             </div>
 
                             <div class="tp-caption very-big-white custom-header-subtitle" data-x="center" data-y="260"
@@ -38,20 +38,20 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:400;e:Power2.easeInOut;" data-start="600"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                {{ $settings->json['slider']['slider1']['subtitle'] }}
+                                {{ __('home.slider.slider1.subtitle') }}
                             </div>
 
                             <div class="tp-caption text-center custom-header-text" data-x="center" data-y="340"
                                 data-width="450" data-height="none" data-whitespace="wrap"
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:600;e:Power2.easeInOut;" data-start="700">
-                                {{ $settings->json['slider']['slider1']['text'] }}
+                                {{ __('home.slider.slider1.text') }}
                             </div>
 
                             <div class="tp-caption" data-x="center" data-y="450" data-width="none" data-height="none"
                                 data-whitespace="nowrap" data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="{{ route('home') }}" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">View Products</a>
                             </div>
                         </li>
 
@@ -65,7 +65,7 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:200;e:Power2.easeInOut;" data-start="500"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                <span class="id-color-2">{{ $settings->json['slider']['slider2']['title'] }}</span>
+                                <span class="id-color-2">{{ __('home.slider.slider2.title') }}</span>
                             </div>
 
                             <div class="tp-caption very-big-white custom-header-subtitle" data-x="center" data-y="260"
@@ -73,20 +73,20 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:400;e:Power2.easeInOut;" data-start="600"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                {{ $settings->json['slider']['slider2']['subtitle'] }}
+                                {{ __('home.slider.slider2.subtitle') }}
                             </div>
 
                             <div class="tp-caption text-center custom-header-text" data-x="center" data-y="340"
                                 data-width="450" data-height="none" data-whitespace="wrap"
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:600;e:Power2.easeInOut;" data-start="700">
-                                {{ $settings->json['slider']['slider2']['text'] }}
+                                {{ __('home.slider.slider2.text') }}
                             </div>
 
                             <div class="tp-caption" data-x="center" data-y="450" data-width="none" data-height="none"
                                 data-whitespace="nowrap" data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="#" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">View Products</a>
                             </div>
                         </li>
 
@@ -99,7 +99,7 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:200;e:Power2.easeInOut;" data-start="500"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                <span class="id-color-2">{{ $settings->json['slider']['slider3']['title'] }}</span>
+                                <span class="id-color-2">{{ __('home.slider.slider3.title') }}</span>
                             </div>
 
                             <div class="tp-caption very-big-white custom-header-subtitle" data-x="center"
@@ -107,21 +107,21 @@
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:400;e:Power2.easeInOut;" data-start="600"
                                 data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                {{ $settings->json['slider']['slider3']['subtitle'] }}
+                                {{ __('home.slider.slider3.subtitle') }}
                             </div>
 
                             <div class="tp-caption text-center custom-header-text" data-x="center" data-y="340"
                                 data-width="450" data-height="none" data-whitespace="wrap"
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:600;e:Power2.easeInOut;" data-start="700">
-                                {{ $settings->json['slider']['slider3']['text'] }}
+                                {{ __('home.slider.slider3.text') }}
                             </div>
 
                             <div class="tp-caption" data-x="center" data-y="450" data-width="none"
                                 data-height="none" data-whitespace="nowrap"
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="#" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">View Products</a>
                             </div>
                         </li>
                     </ul>
@@ -135,11 +135,11 @@
                     <div class="row aligns-item-center">
                         <div class="col-lg-6">
                             <div class="text-center">
-                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ $settings->json['interview']['title'] }}</h2>
-                                <h2 class="s2 wow fadeInUp">{{ $settings->json['interview']['subtitle'] }}</h2>
+                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ __('home.interview.title') }}</h2>
+                                <h2 class="s2 wow fadeInUp">{{ __('home.interview.subtitle') }}</h2>
                                 <div class="spacer-single"></div>
                             </div>
-                            <p class="lead">{{ urldecode($settings->json['interview']['text']) }}</p>
+                            <p class="lead">{{ __('home.interview.text') }}</p>
                         </div>
                         <div class="col-md-6 first-img" style="height: 450px">
                             <img style="width: 120%;height: 100%" src="{{ asset('assets/images/background/bg-1.jpg') }}" alt="" class="rounded-20 img-gall">
@@ -157,32 +157,32 @@
                         <div class="col-lg-3 wow fadeInRight">
                             <img src="{{ asset('assets/images/misc/icon-2.png') }}" alt="">
                             <div class="spacer-single"></div>
-                            <h3>{{ $settings->json['why']['why1']['title'] }}</h3>
-                            <p>{{ urldecode($settings->json['why']['why1']['text']) }}</p>
+                            <h3>{{ __('home.why.why1.title') }}</h3>
+                            <p>{{ __('home.why.why1.text') }}</p>
                             <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".1s">
                             <img src="{{ asset('assets/images/misc/icon-3.png') }}" alt="">
                             <div class="spacer-single"></div>
-                            <h3>{{ $settings->json['why']['why2']['title'] }}</h3>
-                            <p>{{ urldecode($settings->json['why']['why2']['text']) }}</p>
+                            <h3>{{__('home.why.why2.title') }}</h3>
+                            <p>{{ __('home.why.why2.text') }}</p>
                             <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".2s">
                             <img src="{{ asset('assets/images/misc/icon-1.png') }}" alt="">
                             <div class="spacer-single"></div>
-                            <h3>{{ $settings->json['why']['why3']['title'] }}</h3>
-                            <p>{{ urldecode($settings->json['why']['why3']['text']) }}</p>
+                            <h3>{{ __('home.why.why3.title') }}</h3>
+                            <p>{{ __('home.why.why3.text') }}</p>
                             <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".3s">
                             <img src="{{ asset('assets/images/misc/icon-4.png') }}" alt="">
                             <div class="spacer-single"></div>
-                            <h3>{{ $settings->json['why']['why4']['title'] }}</h3>
-                            <p>{{ urldecode($settings->json['why']['why4']['text']) }}</p>
+                            <h3>{{ __('home.why.why4.title') }}</h3>
+                            <p>{{ __('home.why.why4.text') }}</p>
                             <a href="#" class="btn-custom">Read More</a>
                         </div>
 
@@ -199,8 +199,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ $settings->json['banner']['banner1']['title'] }}</h2>
-                                <h2 class="s2 wow fadeInUp">{{ $settings->json['banner']['banner1']['text'] }}</h2>
+                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ __('home.banner.banner1.title') }}</h2>
+                                <h2 class="s2 wow fadeInUp">{{ __('home.banner.banner1.text') }}</h2>
                                 <div class="spacer-double"></div>
                             </div>
                         </div>
@@ -211,34 +211,34 @@
 
 
             <!-- section begin -->
-            <section class="jarallax" aria-label="section">
+            <section class="jarallax" aria-label="section" id="products-section">
                 <img src="{{ asset('assets/images/background/bg-3.jpg') }}" class="jarallax-img" alt="">
                 <div class="container">
                     <div class="row wow fadeInLeft">
                         <div class="col-lg-6">
                             <div class="menu-item thead">
-                                <div class="c1">{{ $settings->json['products']['title'] }}</div>
+                                <div class="c1">{{ __('home.products.title') }}</div>
                             </div>
 
 
                             <div class="menu-item">
-                                <div class="c1">{{ $settings->json['products']['product1']['name'] }}<span>{{ $settings->json['products']['product1']['desc'] }}</span></div>
+                                <div class="c1">{{ __('home.products.product1.name') }}<span>{{ __('home.products.product1.desc') }}</span></div>
                             </div>
 
                             <div class="menu-item">
-                                <div class="c1">{{ $settings->json['products']['product2']['name'] }}<span>{{ $settings->json['products']['product2']['desc'] }}</span></div>
+                                <div class="c1">{{ __('home.products.product2.name') }}<span>{{ __('home.products.product2.desc') }}</span></div>
                             </div>
 
                             <div class="menu-item">
-                                <div class="c1">{{ $settings->json['products']['product3']['name'] }}<span>{{ $settings->json['products']['product3']['desc'] }}</span></div>
+                                <div class="c1">{{ __('home.products.product3.name') }}<span>{{ __('home.products.product3.desc') }}</span></div>
                             </div>
 
                             <div class="menu-item">
-                                <div class="c1">{{ $settings->json['products']['product4']['name'] }}<span>{{ $settings->json['products']['product4']['desc'] }}</span></div>
+                                <div class="c1">{{ __('home.products.product4.name') }}<span>{{ __('home.products.product4.desc') }}</span></div>
                             </div>
 
                             <div class="menu-item">
-                                <div class="c1">{{ $settings->json['products']['product5']['name'] }}<span>{{ $settings->json['products']['product5']['desc'] }}</span></div>
+                                <div class="c1">{{ __('home.products.product5.name') }}<span>{{ __('home.products.product5.desc') }}</span></div>
                             </div>
 
                             <div class="spacer-single"></div>
@@ -258,8 +258,8 @@
                     <div class="row wow fadeInRight">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ $settings->json['banner']['banner2']['title'] }}</h2>
-                                <h2 class="s2 wow fadeInUp">{{ $settings->json['banner']['banner2']['text'] }}</h2>
+                                <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ __('home.banner.banner2.title') }}</h2>
+                                <h2 class="s2 wow fadeInUp">{{ __('home.banner.banner2.text') }}</h2>
                                 <div class="spacer-double"></div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
                     <div class="row wow fadeInRight">
                         <div class="col-lg-6 offset-lg-6">
                             <div style="max-width: 1200px; text-align: justify" class="menu-item thead">
-                                <div style="font-size: 25px" class="c1 custom-desc">{{ urldecode($settings->json['desc']['text']) }}</div>
+                                <div style="font-size: 25px" class="c1 custom-desc">{{ __('home.desc.text') }}</div>
                             </div>
                         </div>
                     </div>
@@ -402,12 +402,12 @@
                         <div class="col-lg-6 offset-lg-6 wow fadeInRight">
                             <div class="padding80">
                                 <div class="text-center">
-                                    <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ $settings->json['recipe']['title'] }}</h2>
-                                    <h2 class="s2 wow fadeInUp">{{ $settings->json['recipe']['subtitle'] }}</h2>
+                                    <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ __('home.recipe.title') }}</h2>
+                                    <h2 class="s2 wow fadeInUp">{{ __('home.recipe.subtitle') }}</h2>
                                     <div class="spacer-single"></div>
                                 </div>
                                 <blockquote>
-                                    {{ urldecode($settings->json['recipe']['text']) }}
+                                    {{ __('home.recipe.text') }}
                                     <span style="float: right; top: 20px">
                                         <a href="#" style="background-color: #f5f5f5;color: #9c1126" class="btn-custom">
                                             View recipes
@@ -424,7 +424,7 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-lg-13 text-lg-center text-sm-center">
-                            <h3>{{ $settings->json['slogan']['title'] }}</h3>
+                            <h3>{{ __('home.slogan.title') }}</h3>
                         </div>
                     </div>
                 </div>

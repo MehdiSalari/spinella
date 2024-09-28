@@ -14,10 +14,18 @@ class Product extends Model
         'description',
         'image',
         'category_id',
+        'price',
+        'status',
+        'stock',
+        'slug'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
+    // protected $casts = [
+    //     'status' => 'boolean',
+    // ];
 }

@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\faPageController;
 use App\Http\Controllers\pageController;
+use App\Http\Controllers\productController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -18,4 +23,34 @@ Route::get('/en' , function () {
 
 Route::group(['prefix' => '/fa'], function () {
     Route::get('/', [faPageController::class, 'home'])->name('fa.home');
+});
+
+Route::get('/login', [adminController::class, 'loginView'])->name('login');
+Route::post('/login', [adminController::class, 'login'])->name('login');
+Route::get('/logout', [adminController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->prefix('admin')->group( function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
+    Route::get('/dashboard', [adminController::class, 'dashboard'])->name('admin.dashboard');
+    // Route::get('/blog', [adminController::class, 'blog'])->name('admin.blog');
+    // Route::get('/blog-details', [adminController::class, 'blogDetails'])->name('admin.blog-details');
+    // Route::get('/mailbox', [adminController::class, 'mailbox'])->name('admin.mailbox');
+    Route::get('/settings', [adminController::class, 'settings'])->name('admin.settings');
+    // Route::get('/product-list', function () {return redirect()->route('admin.product-list.index');})->name('admin.product-list');
+    Route::name('admin')->resource('product-list', productController::class)->except(['create', 'edit', 'show']);
+    Route::post('/product-list/status', [productController::class, 'updateStatus'])->name('admin.product-list.status');
+    Route::name('admin')->resource('category', categoryController::class)->except(['create', 'edit', 'show']);
+    
+    // Mailbox
+    Route::name('admin')->resource('mailbox', TicketController::class)->except(['create', 'edit']);
+    Route::get('/mailbox/{mailbox}', [TicketController::class, 'show'])->name('admin.mailbox.show')->withTrashed();
+    Route::get('/mailbox-trash', [TicketController::class, 'trash'])->name('admin.mailbox-trash');
+    Route::get('mailbox/{mailbox}/restore', [TicketController::class, 'restore'])->name('admin.mailbox.restore');
+    Route::delete('mailbox/{mailbox}/force-destroy', [TicketController::class, 'forceDestroy'])->name('admin.mailbox.force-destroy');
+    //
+
+    Route::name('admin')->resource('blog', BlogController::class);
+
 });
