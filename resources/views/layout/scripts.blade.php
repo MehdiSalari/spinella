@@ -17,6 +17,7 @@
 <script src="{{ asset('assets/revolution/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
 <script src="{{ asset('assets/revolution/js/extensions/revolution.extension.migration.min.js') }}"></script>
 <script src="{{ asset('assets/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+@stack('script')
 
 <script>
     jQuery(document).ready(function () {

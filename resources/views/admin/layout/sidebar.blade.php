@@ -7,7 +7,9 @@
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
-                    <li class="active">
+                    <li @if (Route::currentRouteName() == 'admin.dashboard' || Route::currentRouteName() == 'admin.product-list.index')
+                        class="active"
+                    @endif >
                         <a class="has-arrow" href="{{ route('admin.dashboard') }}">
                                <i class="icon nalika-home icon-wrap"></i>
                                <span class="mini-click-non">Ecommerce</span>
@@ -17,17 +19,20 @@
                             <li><a title="Product List" href="{{ route('admin.product-list.index') }}"><span class="mini-sub-pro">Product List</span></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li @if (Route::currentRouteName() == 'admin.mailbox.index' || Route::currentRouteName() == 'admin.mailbox-trash')
+                        class="active"
+                    @endif>
                         <a class="has-arrow" href="{{ route('admin.mailbox.index') }}" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="Inbox" href="{{ route('admin.mailbox.index') }}"><span class="mini-sub-pro">Inbox</span></a></li>
                             <li><a title="Trash" href="{{ route('admin.mailbox-trash') }}"><span class="mini-sub-pro">Trash</span></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('admin.blog.index') }}" aria-expanded="false"><i class="icon nalika-forms icon-wrap"></i> <span class="mini-click-non">Blogs</span></a>
+                    <li @if (Route::currentRouteName() == 'admin.blog.index') class="active"
+                    @endif>
+                        <a class="has-arrow" href="{{ route('admin.blog.index') }}" aria-expanded="false"><i class="icon nalika-forms icon-wrap"></i> <span class="mini-click-non">Blog</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Blog" href="{{ route('admin.blog.index') }}"><span class="mini-sub-pro">Blog</span></a></li>
+                            <li><a title="Blog" href="{{ route('admin.blog.index') }}"><span class="mini-sub-pro">Posts</span></a></li>
                             <!-- <li><a title="Blog Details" href="blog-details.html"><span class="mini-sub-pro">Blog Details</span></a></li> -->
                         </ul>
                     </li>

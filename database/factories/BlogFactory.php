@@ -17,11 +17,17 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->words(),
-            'description' => fake()->sentence(),
-            'image' => fake()->word(),
+            'image_primary' => fake()->imageUrl(),
+            'title' => fake()->sentence(),
+            'image_left' => fake()->imageUrl(),
+            'image_right' => fake()->imageUrl(),
+            'upper_text' => fake()->sentence(),
+            'image_mid' => fake()->imageUrl(),
+            'mid_text' => fake()->sentence(),
+            'lower_text' => fake()->sentence(),
             'slug' => fake()->slug(),
-            'status' => fake()->enumerable(['active', 'deactive'])->first(),
+            'status' => fake()->randomElement(['active', 'deactive']),
+            'user_id' => 1
         ];
     }
 }

@@ -6666,3 +6666,16 @@ i.icon-big {
 		text-align: justify;
 	}
 }
+
+
+/* برای اطمینان از نمایش فلش‌های input نوع number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: auto;
+    appearance: auto;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* برای رفع حذف فلش‌ها در فایرفاکس */
+}

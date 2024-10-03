@@ -19,12 +19,10 @@
                 <!-- mainmenu begin -->
                 <nav>
                     <ul id="mainmenu">
-                        <li><a href="blog">Blog</a></li>
-                        <li><a href="products">Products</a></li>
-                        <li><a href="about-us">About</a>
-                            
-                        </li>
-                        <li><a href="contact-us">Contact</a></li>
+                        <li><a href="{{ route('blog') }}">Blog</a></li>
+                        <li><a href="{{ route('products') }}">Products</a></li>
+                        <li><a href="{{ route('about-us') }}">About</a></li>
+                        <li><a href="{{ route('contact-us') }}">Contact</a></li>
                     </ul>
                 </nav>
                 <div class="clearfix"></div>

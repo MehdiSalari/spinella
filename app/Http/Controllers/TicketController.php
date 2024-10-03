@@ -22,9 +22,25 @@ class TicketController extends Controller
      */
     public function show(Ticket $mailbox)
     {
-        $mails = Ticket::orderByDesc("id")->paginate(10);
         $mailbox->update(["is_read" => true]);
+        $mails = Ticket::orderByDesc("id")->paginate(10);
         return view("admin.mail", compact("mails", "mailbox"));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            "name" => "required|string",
+            "email" => "required|email",
+            "phone" => "required|numeric",
+            "body" => "required|string",
+        ]);
+        Ticket::create($request->all());
+        return redirect()->back()->with("success", "Your message has been sent successfully");
     }
 
     /**

@@ -235,7 +235,7 @@
             <div class="popup-content">
                 <div class="popup-bg">
                 <label style="color: white;font-size: 20px;" class="page-item"><i style="margin-right: 10px" class="icon nalika-edit" aria-hidden="true"></i>Edit Product</label>
-                <form action="{{ route('admin.product-list.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                <form id="edit-product-form" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <input type="hidden" name="productId" id="edit-product-id">
@@ -357,6 +357,7 @@
                     document.getElementById('edit-product-category').value = category;
                     document.getElementById('edit-product-price').value = price;
                     document.getElementById('edit-product-image').src = image;
+                    document.getElementById('edit-product-form').action = "{{ route('admin.product-list.update'," + productId + " ) }}"
                     // document.getElementById('edit-image-upload').value = image;
 
                     // Open the edit product popup

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Setting;
@@ -18,13 +19,15 @@ class pageController extends Controller
     public function blog()
     {
         $settings = Setting::find(1);
-        return view('blog', compact('settings'));
+        $blogs = Blog::orderByDesc("created_at")->paginate(6);
+        return view('blog', compact('blogs', 'settings'));
     }
 
-    public function blogSingle()
+    public function blogSingle($slug)
     {
         $settings = Setting::find(1);
-        return view('blog-single', compact('settings'));
+        $blog = Blog::where('slug', $slug)->first();
+        return view('blog-single', compact('blog', 'settings'));
     }
 
     public function contact()

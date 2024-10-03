@@ -23,4 +23,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/revolution/css/navigation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rev-settings.css') }}">
 
+    @stack('style')
+
+    {{-- <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="<?=asset('assets/admin/css/bootstrap.min.css') ?>">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="<?=asset('assets/admin/css/font-awesome.min.css') ?>"> --}}
+
 </head>

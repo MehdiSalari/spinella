@@ -20,25 +20,10 @@
                                 <h4 class="text-left text-uppercase"><b>Products</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label style="font-size:15px" class="label bg-green">See Details</label>
+                                        <label style="font-size:15px; cursor:pointer" class="label bg-green">See Details</label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">6</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                        <a href="{{ route('admin.blog') }}">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                                <h4 class="text-left text-uppercase"><b>Blogs</b></h4>
-                                <div class="row vertical-center-box vertical-center-box-tablet">
-                                    <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label style="font-size:15px" class="label bg-red">See Details</label>
-                                    </div>
-                                    <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">4</h2>
+                                        <h2 class="text-right no-margin">{{ $products }}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -50,22 +35,37 @@
                                 <h4 class="text-left text-uppercase"><b>Tickets</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label style="font-size:15px" class="label bg-blue">See Details</label>
+                                        <label style="font-size:15px; cursor:pointer" class="label bg-blue">See Details</label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">0</h2>
+                                        <h2 class="text-right no-margin">{{ $tickets }}</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </a>
+                        <a href="{{ route('admin.blog.index') }}">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
+                                    <h4 class="text-left text-uppercase"><b>Blogs</b></h4>
+                                    <div class="row vertical-center-box vertical-center-box-tablet">
+                                        <div class="col-xs-3 mar-bot-15 text-left">
+                                            <label style="font-size:15px; cursor:pointer" class="label bg-red">See Details</label>
+                                        </div>
+                                        <div class="col-xs-9 cus-gh-hd-pro">
+                                            <h2 class="text-right no-margin">{{ $blogs }}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
                         <a href="{{ route('admin.settings') }}">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                                 <h4 class="text-left text-uppercase"><b>Settings</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label style="font-size:15px" class="label bg-purple">See Details</label>
+                                        <label style="font-size:15px; cursor:pointer" class="label bg-purple">See Details</label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
                                         <h2 class="text-right no-margin"> </h2>

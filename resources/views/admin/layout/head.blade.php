@@ -63,6 +63,15 @@
     <link rel="stylesheet" href="<?=asset('assets/admin/css/responsive.css') ?>">
     <!-- modernizr JS
 		============================================ -->
-    <script src="<?=asset('assets/admin/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
+    <script src="<?=asset('assets/admin/js/modernizr-2.8.3.min.js') ?>"></script>
+
+    <!-- JQuery
+    ============================================ -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SweetAlert 2
+    ============================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    @stack('style')
 </head>

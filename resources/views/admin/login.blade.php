@@ -5,26 +5,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?= asset('assets/images/icon.png') ?>"/>
+	<link rel="icon" type="image/png" href="{{ asset('assets/images/icon.png') }}"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/bootstrap.min.css') }}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?= asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') ?>">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?= asset('assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') ?>">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/animate.css') }}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+	{{-- <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css"> --}}
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+	{{-- <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css"> --}}
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css/select2/select2.min.css') }}">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+	{{-- <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css"> --}}
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?= asset('assets/css/util.css') ?>">
-	<link rel="stylesheet" type="text/css" href="<?= asset('assets/css/login.css') ?>">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/login.css') }}">
 <!--===============================================================================================-->
 </head>
 <body style="background-color: #666666;">
@@ -35,7 +35,7 @@
 				<form class="login100-form validate-form" action="" method="post">
                     @csrf
 					<a href="{{ route('home') }}"><span class="login100-form-logo">
-						<img src="<?= asset('assets/images/logo.png') ?>" alt="" width="200" style="margin: 20px 27.5%;">
+						<img src="{{ asset('assets/images/logo.png') }}" alt="" width="200" style="margin: 20px 27.5%;">
 					</span>
 					</a>
 					<span class="login100-form-title p-b-43">
@@ -62,7 +62,7 @@
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember_me">
 							<label class="label-checkbox100" for="ckb1">
 								Remember me
 							</label>
@@ -97,7 +97,7 @@
 					</div> -->
 				</form>
 
-				<div class="login100-more" style="background-image: url('<?= asset('assets/images/background/bg-7.jpg') ?>');">
+				<div class="login100-more" style="background-image: url('{{ asset('assets/images/background/bg-7.jpg') }}');">
 				</div>
 			</div>
 		</div>
@@ -108,21 +108,22 @@
 	
 	
 <!--===============================================================================================-->
-	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="{{ asset('assets/admin/js/bootstrap.min.js') }}"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/animsition/js/animsition.min.js"></script>
+	{{-- <script src="../vendor/animsition/js/animsition.min.js"></script> --}}
 <!--===============================================================================================-->
-	<script src="../vendor/bootstrap/js/popper.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	{{-- <script src="../vendor/bootstrap/js/popper.js"></script> --}}
+	{{-- <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> --}}
 <!--===============================================================================================-->
-	<script src="../vendor/select2/select2.min.js"></script>
+	<script src="{{ asset('assets/admin/js/select2/select2.full.min.js') }}"></script>
+	<script src="{{ asset('assets/admin/js/select2/select2-active.js') }}"></script>
 <!--===============================================================================================-->
-	<script src="../vendor/daterangepicker/moment.min.js"></script>
-	<script src="../vendor/daterangepicker/daterangepicker.js"></script>
+	{{-- <script src="../vendor/daterangepicker/moment.min.js"></script> --}}
+	{{-- <script src="../vendor/daterangepicker/daterangepicker.js"></script> --}}
 <!--===============================================================================================-->
-	<script src="../vendor/countdowntime/countdowntime.js"></script>
+	{{-- <script src="../vendor/countdowntime/countdowntime.js"></script> --}}
 <!--===============================================================================================-->
-	<script src="<?= asset('assets/js/login.js') ?>"></script>
+	<script src="{{ asset('assets/js/login.js') }}"></script>
 
 </body>
 </html>

@@ -22,6 +22,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @push('dropdown')
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+                                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">                                
+                            @endpush
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                 <div class="header-right-info">
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">
@@ -32,7 +37,7 @@
                                                     <i class="icon nalika-down-arrow nalika-angle-dw"></i>
                                                 </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                <li><a href="logout"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+                                                <li><a href="{{ route('logout') }}"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
                                                 </li>
                                             </ul>
                                         </li>
