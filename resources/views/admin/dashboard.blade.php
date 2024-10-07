@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             </a>
-                        <a href="{{ route('admin.settings') }}">
+                        <a href="{{ route('admin.settings.index') }}">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                                 <h4 class="text-left text-uppercase"><b>Settings</b></h4>

@@ -19,9 +19,32 @@
                                 <div class="latest-blog-single blog-single-full-view">
                                     <div class="blog-image">
                                         <a href="#"><img
-                                                src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_primary") }}"
-                                                alt="" />
+                                            src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_primary") }}"
+                                            alt="" />
                                         </a>
+                                        {{-- edit btn and delete btn --}}
+                                        <button id="open-edit-popup" class="btn btn-primary pull-right">Edit Post</button>
+                                        <form action="{{ route('admin.blog.destroy', $blog->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" id="delete-blog" class="btn btn-danger pull-right">Delete Post</button>
+                                        </form>
+                                        
+                                        
+                                        
+                                        <form action="{{ route('admin.blog.status', $blog->id)}}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            {{-- <input type="hidden" name="id" value="{{ $blog->id }}"> --}}
+                                            @if ($blog->status == 'active')
+                                            <input type="hidden" name="status" value="deactive">
+                                            <button type="submit" class="btn btn-warning pull-right">Deactive Post</button>
+                                            @else
+                                            <input type="hidden" name="status" value="active">
+                                            <button type="submit" class="btn btn-success pull-right">Active Post</button>
+                                            @endif
+                                        </form>
+                                        
                                         <div class="blog-date">
                                             <p><span class="blog-day">{{ $blog->created_at->format('d') }}</span>
                                                 {{ $blog->created_at->format('M') }}</p>
@@ -40,15 +63,25 @@
                                             </a>
                                         </h1>
                                         <div style="display: flex; justify-content: center; width: 70%; align-items: center; margin: 20px auto">
-                                            <img style="width: 50%; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_primary") }}" alt="">
-                                            <img style="width: 50%; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_primary") }}" alt="">
+                                            @if ($blog->image_left)
+                                            <img style="width: 50%; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_left") }}" alt="">
+                                            @endif
+                                            @if ($blog->image_right)
+                                            <img style="width: 50%; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_right") }}" alt="">
+                                            @endif
                                         </div>
                                         <p>{{ $blog->upper_text }}</p>
                                         <div style="display: flex; justify-content: center; width: 70%; align-items: center; margin: 20px auto">
-                                            <img style="width: 220px; height: 400px; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_primary") }}" alt="">
+                                            @if ($blog->image_mid)
+                                            <img style="width: 220px; height: 400px; padding: 0 20px" src="{{ asset("assets/images/blogs/$blog->slug/$blog->image_mid") }}" alt="">
+                                            @endif
+                                            @if ($blog->mid_text)
                                             <p style="border: solid 2px #9c1126; padding: 10px; border-radius: 10px; height: 400px; width: 200px; font-size: 20px">{{ $blog->mid_text }}</p>
+                                            @endif
                                         </div>
+                                        @if ($blog->lower_text)
                                         <p>{{ $blog->lower_text }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -204,4 +237,204 @@
             </div>
         </div>
     </div>
+
+    {{-- Start edit blog Pop-up Form --}}
+    <div class="popup" id="edit-blog-popup">
+        <div class="popup-content">
+            <div class="popup-bg">
+                <label style="color: white;font-size: 20px;" class="page-item"><i style="margin-right: 10px"
+                        class="icon nalika-edit" aria-hidden="true"></i>Edit Blog</label>
+                <form id="edit-blog-form" method="POST" action="{{ route('admin.blog.update', $blog->id) }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+                    <input type="hidden" name="user_id" id="edit-blog-id" value="{{ Auth::user()->id }}">
+                    <div class="product-tab-list tab-pane fade active in" id="description">
+                        <div style="display: flex; justify-content: center;" class="row">
+                            <div style="display: flex; justify-content: center;"
+                                class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <label for="edit-image-upload-primary"
+                                            style="width: 300px; text-align: center; color: white; margin-bottom: 10px"><i
+                                                class="icon nalika-picture" style="margin-right: 10px"
+                                                aria-hidden="true"></i>Primary Image *</label>
+                                        <div class="input-group mg-b-pro-edt">
+                                            <img id="edit-blog-image-primary"
+                                                src="{{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_primary) }}" alt=""
+                                                style="width: 300px; height: 150px;">
+                                        </div>
+                                        <label class="custom-file-upload" style="width: 300px; text-align: center">
+                                            <input type="file" id="edit-image-upload-primary" name="image_primary"
+                                                accept="image/*" />
+                                            Upload Image
+                                        </label>
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Blog Title *" name="title"
+                                            id="edit-blog-title" required value="{{ $blog->title }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <label for="edit-image-upload-left"
+                                            style="text-align: center; color: white; margin-bottom: 10px"><i
+                                                class="icon nalika-picture" style="margin-right: 10px"
+                                                aria-hidden="true"></i>Left Image</label>
+                                        <div class="input-group mg-b-pro-edt">
+                                            <img id="edit-blog-image-left"
+                                                src="@if ($blog->image_left) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_left) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
+                                                style="width: 300px; height: 150px;">
+                                        </div>
+                                        <label class="custom-file-upload">
+                                            <input type="file" id="edit-image-upload-left" name="image_left"
+                                                accept="image/*" />
+                                            Upload Image
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt">
+                                        <label for="edit-image-upload-right"
+                                            style="text-align: center; color: white; margin-bottom: 10px"><i
+                                                class="icon nalika-picture" style="margin-right: 10px"
+                                                aria-hidden="true"></i>Right Image</label>
+                                        <div class="input-group mg-b-pro-edt">
+                                            <img id="edit-blog-image-right"
+                                            src="@if ($blog->image_left) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_right) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
+                                            style="width: 300px; height: 150px;">
+                                        </div>
+                                        <label class="custom-file-upload">
+                                            <input type="file" id="edit-image-upload-right" name="image_right"
+                                                accept="image/*" />
+                                            Upload Image
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="review-content-section">
+                                    <label for="edit-blog-text-upper" style="color: white; margin-bottom: 10px"><i
+                                            class="icon nalika-edit" style="margin-right: 10px"
+                                            aria-hidden="true"></i>Upper Text *</label>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit"
+                                                aria-hidden="true"></i></span>
+                                        <textarea style="resize: none" rows="7" class="form-control" name="upper_text" id="edit-blog-text-upper"
+                                            required>{{ $blog->upper_text }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <label for="edit-image-upload-mid" style="color: white; margin-bottom: 10px"><i
+                                            class="icon nalika-picture" style="margin-right: 10px"
+                                            aria-hidden="true"></i>Mid Image</label>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <img id="edit-blog-image-mid"
+                                        src="@if ($blog->image_left) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_mid) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
+                                        style="width: 200px; height: 350px;">
+                                    </div>
+                                    <label class="custom-file-upload"
+                                        style="width: 200px; text-align: center;padding: 10px">
+                                        <input type="file" id="edit-image-upload-mid" name="image_mid"
+                                            accept="image/*" />
+                                        Upload Image
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="review-content-section">
+                                    <label for="edit-blog-text-mid" style="color: white; margin-bottom: 10px"><i
+                                            class="icon nalika-edit" style="margin-right: 10px"
+                                            aria-hidden="true"></i>Mid Text</label>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit"
+                                                aria-hidden="true"></i></span>
+                                        <textarea style="resize: none; font-size: 25px;" rows="10" class="form-control" name="mid_text"
+                                            id="edit-blog-text-mid">{{ $blog->mid_text }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="review-content-section">
+                                    <label for="edit-blog-text-lower" style="color: white; margin-bottom: 10px"><i
+                                            class="icon nalika-edit" style="margin-right: 10px"
+                                            aria-hidden="true"></i>Lower Text</label>
+                                    <div class="input-group mg-b-pro-edt">
+                                        <span class="input-group-addon"><i class="icon nalika-edit"
+                                                aria-hidden="true"></i></span>
+                                        <textarea style="resize: none" rows="7" class="form-control" 
+                                            name="lower_text," id="edit-blog-text-lower">{{ $blog->lower_text }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 20px 15px;">
+                        <div class="text-center">
+                            <button name="editBlog" type="submit"
+                                class="btn btn-primary waves-effect waves-light">Edit</button>
+                            <button type="button"
+                                class="btn btn-primary waves-effect waves-light close-popup">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- End edit blog Pop-up Form --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open Add blog Popup
+            document.getElementById('open-edit-popup').addEventListener('click', function() {
+                document.getElementById('edit-blog-popup').style.display = 'block';
+            });
+
+            // Close Popup Forms
+            document.querySelectorAll('.close-popup').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    this.closest('.popup').style.display = 'none';
+                    const image = document.getElementById('edit-product-image');
+                    image.src = '{{ asset('assets/images/products/default.png') }}';
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deletePost = document.getElementById('delete-blog');
+            deletePost.addEventListener('click', function(event) {
+                event.preventDefault(); // جلوگیری از ارسال فرم به صورت خودکار
+                swal.fire({
+                    title: 'Are you sure you want to delete this post?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // اگر کاربر تایید کرد، فرم به صورت دستی ارسال شود
+                        this.closest('form').submit();
+                    }
+                });
+            });
+        })
+    </script>
 @endsection

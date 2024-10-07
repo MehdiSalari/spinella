@@ -8,6 +8,7 @@ use App\Http\Controllers\faPageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
@@ -18,7 +19,7 @@ Route::get('/blog', [pageController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [pageController::class, 'blogSingle'])->name('blog.show');
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 Route::get('/contact-us', [pageController::class, 'contact'])->name('contact-us');
-Route::post('/contact-us', [TicketController::class, 'store'])->name('contact-us');
+Route::post('/contact-us', [TicketController::class, 'store'])->name('contact-us.store');
 Route::get('/about-us', [pageController::class, 'about'])->name('about-us');
 Route::get('/products', [pageController::class, 'products'])->name('products');
 
@@ -30,7 +31,7 @@ Route::group(['prefix' => '/fa'], function () {
     Route::get('/', [faPageController::class, 'home'])->name('fa.home');
 });
 
-Route::get('/login', [adminController::class, 'loginView'])->name('login');
+Route::get('/login', [adminController::class, 'loginView'])->name('login.view');
 Route::post('/login', [adminController::class, 'login'])->name('login');
 Route::get('/logout', [adminController::class, 'logout'])->name('logout');
 
@@ -40,12 +41,11 @@ Route::middleware(['auth'])->prefix('admin')->group( function () {
         return redirect('/admin/dashboard');
     });
     Route::get('/dashboard', [adminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/settings', [adminController::class, 'settings'])->name('admin.settings');
-
+    
     // Products
     Route::name('admin')->resource('product-list', productController::class)->except(['create', 'edit', 'show']);
     Route::post('/product-list/status', [productController::class, 'updateStatus'])->name('admin.product-list.status');
-
+        // Category
     Route::name('admin')->resource('category', categoryController::class)->except(['create', 'edit', 'show']);
     
     // Mailbox
@@ -57,8 +57,20 @@ Route::middleware(['auth'])->prefix('admin')->group( function () {
     
     // Comments
     Route::name('admin')->resource('comments', CommentController::class)->except(['edit']);
+    
+    // Blog
+    Route::name('admin')->resource('blog', BlogController::class)->except(['create', 'edit']);
+    Route::patch('/blog/{blog}/status', [BlogController::class, 'updateStatus'])->name('admin.blog.status');
 
-    Route::name('admin')->resource('blog', BlogController::class);
+    // Settings
+    Route::get('/settings',[SettingController::class, 'index'])->name('admin.settings.index');
+    Route::get('/settings/home',[SettingController::class, 'home'])->name('admin.settings.home');
+    Route::get('/settings/blog',[SettingController::class, 'blog'])->name('admin.settings.blog');
+    Route::get('/settings/about',[SettingController::class, 'about'])->name('admin.settings.about-us');
+    Route::get('/settings/contact',[SettingController::class, 'contact'])->name('admin.settings.contact-us');
+    Route::get('/settings/products',[SettingController::class, 'products'])->name('admin.settings.products');
+    Route::patch('/settings/{page}/{lang}',[SettingController::class, 'update'])->name('admin.settings.update');
 
-    Route::post('/upload-image', [ImageController::class, 'uploadImage']);
+    //admins
+    Route::get('/admins', [adminController::class, 'admins'])->name('admin.admins.index');
 });

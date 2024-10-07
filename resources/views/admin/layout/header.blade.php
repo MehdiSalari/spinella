@@ -60,20 +60,27 @@
                             <ul class="mobile-menu-nav">
                                 <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= url('dashboard') ?>">Dashboard</a></li>
-                                        <li><a href="product-list.html">Product List</a></li>
+                                        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                        <li><a href="{{ route('admin.product-list.index') }}">Product List</a></li>
                                     </ul>
                                 </li>
                                 <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                     <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="<?= url('mailbox') ?>">Inbox</a>
+                                        <li><a href="{{ route('admin.mailbox.index') }}">Inbox</a>
+                                        </li>
+                                        <li><a href="{{ route('admin.mailbox-trash') }}">Trash</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li><a data-toggle="collapse" data-target="#others" href="#">Blog <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                     <ul id="others" class="collapse dropdown-header-top">
-                                        <li><a href="<?= url('blog') ?>">Blog</a></li>
-                                        <!-- <li><a href="blog-details.html">Blog Details</a></li> -->
+                                        <li><a href="{{ route('admin.blog.index') }}">Posts</a></li>
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="collapse" data-target="#others" href="#">Settings <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                    <ul id="others" class="collapse dropdown-header-top">
+                                        <li><a href="{{ route('admin.settings.index') }}">Site Contents</a></li>
+                                        {{-- <li><a href="{{ route('admin.admins.index') }}">Admins</a></li> --}}
                                     </ul>
                                 </li>
                             </ul>

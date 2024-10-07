@@ -46,13 +46,13 @@
 
     <!-- subheader -->
     <section id="subheader" class="jarallax text-light">
-        <img src="{{ asset('assets/images/background/bg-8.jpg') }}" class="jarallax-img" alt="">
+        <img src="{{ asset('assets/images/background/' . __('blog.header.image')) }}" class="jarallax-img" alt="">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center wow fadeInUp">
-                        <h2 class="s1 mb-40">Latest</h2>
-                        <h2 class="s2">Blog</h2>
+                        <h2 class="s1 mb-40">{{ __('blog.header.title') }}</h2>
+                        <h2 class="s2">{{ __('blog.header.subtitle') }}</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Blog</li>

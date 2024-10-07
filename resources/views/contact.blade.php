@@ -42,7 +42,7 @@
 
                     <div class="col-lg-8">
                         <form name="contactForm" id="contact_form" class="position-relative z1000" method="POST"
-                            action="{{ route('contact-us') }}">
+                            action="{{ route('contact-us.store') }}">
                             @csrf
 
                             <div class="row gx-4">
@@ -74,20 +74,10 @@
                                 <div style="color: red; margin-left: 20px; font-weight: bold">{{ $error }}</div>
                             @endforeach
 
-                            {{-- <div class="g-recaptcha" data-sitekey="insert-your-sitekey-here"></div> --}}
                             <div id='submit' class="mt20">
                                 <input type='submit' id='send_message' value='Send Message' class="btn-custom">
                             </div>
-
-
-                            {{-- <div id="success_message" class='success'>
-                                    Your message has been sent successfully. Refresh this page if you want to send more messages.
-                                </div>
-                                <div id="error_message" class='error'>
-                                    Sorry there was an error sending your form.
-                                </div> --}}
                         </form>
-                        {{-- @dd($errors->all()) --}}
 
                     </div>
                 </div>

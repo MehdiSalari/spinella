@@ -238,6 +238,46 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        document.getElementById('add-image-upload-left').addEventListener('change', function() {
+            const image = document.getElementById('add-blog-image-left');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById('add-image-upload-right').addEventListener('change', function() {
+            const image = document.getElementById('add-blog-image-right');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById('add-image-upload-mid').addEventListener('change', function() {
+            const image = document.getElementById('add-blog-image-mid');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
     {{-- sweet alert message for validation error --}}
     @php

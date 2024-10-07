@@ -73,4 +73,69 @@ class BlogController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function update(Request $request, Blog $blog)
+    {
+        $request->validate([
+            'image_primary' => 'image|required',
+            'title' => 'string|required',
+            'image_left' => 'image',
+            'image_right' => 'image',
+            'upper_text' => 'string|required',
+            'image_mid' => 'image',
+            'mid_text' => 'string|nullable',
+            'lower_text' => 'string|nullable',
+            'user_id' => 'numeric|exists:users,id'
+        ]);
+
+        if($request->hasFile('image_primary')) {
+            $image_primary = $request->file('image_primary');
+            $image_primary_name = $blog->image_primary;
+            $image_primary->move(public_path("assets/images/blogs/$blog->slug"), $image_primary_name);
+        }
+        if($request->hasFile('image_left')) {
+            $image_left = $request->file('image_left');
+            $image_left_name = $blog->image_left;
+            $image_left->move(public_path("assets/images/blogs/$blog->slug"), $image_left_name);
+        }
+
+        if($request->hasFile('image_right')) {
+            $image_right = $request->file('image_right');
+            $image_right_name = $blog->image_right;
+            $image_right->move(public_path("assets/images/blogs/$blog->slug"), $image_right_name);
+        }
+
+        if($request->hasFile('image_mid')) {
+            $image_mid = $request->file('image_mid');
+            $image_mid_name = $blog->image_mid;
+            $image_mid->move(public_path("assets/images/blogs/$blog->slug"), $image_mid_name);
+        }
+
+        $blog->update([
+            'image_primary' => $image_primary_name ?? $blog->image_primary,
+            'title' => $request->input("title") ?? $blog->title,
+            'image_left' => $image_left_name ?? $blog->image_left,
+            'image_right' => $image_right_name ?? $blog->image_right,
+            'upper_text' => $request->input("upper_text") ?? $blog->upper_text,
+            'image_mid' => $image_mid_name ?? $blog->image_mid,
+            'mid_text' => $request->input("mid_text") ?? $blog->mid_text,
+            'lower_text' => $request->input("lower_text") ?? $blog->lower_text,
+            'user_id' => $request->input("user_id") ?? $blog->user_id
+        ]);
+        return redirect()->back();
+    }
+
+    public function updateStatus(Request $request, Blog $blog )
+    {
+        $blog->update([
+            'status' => $request->input('status')
+        ]);
+        return redirect()->back();
+    }
+
+    public function destroy(Blog $blog)
+    {
+        $blog->delete();
+        return redirect()->route('admin.blog.index');
+    }
 }
