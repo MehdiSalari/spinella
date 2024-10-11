@@ -297,6 +297,11 @@
                                                 accept="image/*" />
                                             Upload Image
                                         </label>
+                                        @if ($blog->image_left)
+                                        <label style="color: pink; cursor: pointer" for="remove-image-left"><i class="fa fa-trash" style="margin-right: 10px" aria-hidden="true"></i>Delete Left Image?
+                                            <input style="width: 20px; height: 20px; margin-left: 10px" type="checkbox" name="remove_image_left" id="remove-image-left">
+                                        </label>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -309,7 +314,7 @@
                                                 aria-hidden="true"></i>Right Image</label>
                                         <div class="input-group mg-b-pro-edt">
                                             <img id="edit-blog-image-right"
-                                            src="@if ($blog->image_left) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_right) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
+                                            src="@if ($blog->image_right) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_right) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
                                             style="width: 300px; height: 150px;">
                                         </div>
                                         <label class="custom-file-upload">
@@ -317,6 +322,11 @@
                                                 accept="image/*" />
                                             Upload Image
                                         </label>
+                                        @if ($blog->image_right)
+                                        <label style="color: pink; cursor: pointer" for="remove-image-right"><i class="fa fa-trash" style="margin-right: 10px" aria-hidden="true"></i>Delete Right Image?
+                                            <input style="width: 20px; height: 20px; margin-left: 10px" type="checkbox" name="remove_image_right" id="remove-image-right">
+                                        </label>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +354,7 @@
                                             aria-hidden="true"></i>Mid Image</label>
                                     <div class="input-group mg-b-pro-edt">
                                         <img id="edit-blog-image-mid"
-                                        src="@if ($blog->image_left) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_mid) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
+                                        src="@if ($blog->image_mid) {{ asset('assets/images/blogs/' . $blog->slug . '/' . $blog->image_mid) }} @else {{ asset('assets/images/default.png') }} @endif" alt=""
                                         style="width: 200px; height: 350px;">
                                     </div>
                                     <label class="custom-file-upload"
@@ -353,6 +363,11 @@
                                             accept="image/*" />
                                         Upload Image
                                     </label>
+                                    @if ($blog->image_mid)
+                                    <label style="color: pink; cursor: pointer; margin-bottom: 10px" for="remove-image-mid"><i class="fa fa-trash" style="margin-right: 10px" aria-hidden="true"></i>Delete Mid Image?
+                                        <input style="width: 20px; height: 20px; margin-left: 10px" type="checkbox" name="remove_image_mid" id="remove-image-mid">
+                                    </label>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -379,7 +394,7 @@
                                         <span class="input-group-addon"><i class="icon nalika-edit"
                                                 aria-hidden="true"></i></span>
                                         <textarea style="resize: none" rows="7" class="form-control" 
-                                            name="lower_text," id="edit-blog-text-lower">{{ $blog->lower_text }}</textarea>
+                                            name="lower_text" id="edit-blog-text-lower">{{ $blog->lower_text }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -436,5 +451,59 @@
                 });
             });
         })
+
+        document.getElementById('edit-image-upload-primary').addEventListener('change', function() {
+            const image = document.getElementById('edit-blog-image-primary');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('edit-image-upload-left').addEventListener('change', function() {
+            const image = document.getElementById('edit-blog-image-left');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById('edit-image-upload-right').addEventListener('change', function() {
+            const image = document.getElementById('edit-blog-image-right');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById('edit-image-upload-mid').addEventListener('change', function() {
+            const image = document.getElementById('edit-blog-image-mid');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
 @endsection

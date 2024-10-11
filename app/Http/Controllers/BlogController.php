@@ -77,7 +77,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
         $request->validate([
-            'image_primary' => 'image|required',
+            'image_primary' => 'image',
             'title' => 'string|required',
             'image_left' => 'image',
             'image_right' => 'image',
@@ -95,7 +95,7 @@ class BlogController extends Controller
         }
         if($request->hasFile('image_left')) {
             $image_left = $request->file('image_left');
-            $image_left_name = $blog->image_left;
+            $image_left_name = $blog->slug . '-left.' . $image_left->getClientOriginalExtension();
             $image_left->move(public_path("assets/images/blogs/$blog->slug"), $image_left_name);
         }
 
@@ -109,6 +109,30 @@ class BlogController extends Controller
             $image_mid = $request->file('image_mid');
             $image_mid_name = $blog->image_mid;
             $image_mid->move(public_path("assets/images/blogs/$blog->slug"), $image_mid_name);
+        }
+
+        if($request->remove_image_left == "on") {
+            //delete left image
+            if($blog->image_left) {
+                unlink(public_path("assets/images/blogs/$blog->slug/$blog->image_left"));
+            }
+            $blog->image_left = null;
+        }
+
+        if($request->remove_image_right == "on") {
+            //delete right image
+            if($blog->image_right) {
+                unlink(public_path("assets/images/blogs/$blog->slug/$blog->image_right"));
+            }
+            $blog->image_right = null;
+        }
+
+        if($request->remove_image_mid == "on") {
+            //delete mid image
+            if($blog->image_mid) {
+                unlink(public_path("assets/images/blogs/$blog->slug/$blog->image_mid"));
+            }
+            $blog->image_mid = null;
         }
 
         $blog->update([

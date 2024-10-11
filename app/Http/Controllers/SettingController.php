@@ -36,7 +36,7 @@ class SettingController extends Controller
 
     public function products()
     {
-        return view('admin.settings.products');
+        return view('admin.settings.product');
     }
 
     public function update(Request $request, $page, $lang)

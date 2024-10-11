@@ -260,7 +260,7 @@
                                         <select name="category_id" class="form-control pro-edt-select form-control-primary" id="edit-product-category" style="cursor: pointer" required>
                                             <option value="">Select Category</option>
                                             @foreach ($categories as $category): 
-                                                <option style="cursor: pointer" {{ $product->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                <option style="cursor: pointer" value="{{ $category->id }}">{{ $category->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -354,12 +354,22 @@
                     document.getElementById('edit-product-title').value = title;
                     document.getElementById('edit-product-description').value = description;
                     document.getElementById('edit-product-stock').value = stock;
-                    document.getElementById('edit-product-category').value = category;
                     document.getElementById('edit-product-price').value = price;
                     document.getElementById('edit-product-image').src = image;
-                    document.getElementById('edit-product-form').action = "{{ route('admin.product-list.update'," + productId + " ) }}"
                     // document.getElementById('edit-image-upload').value = image;
 
+                    // Set the category in the select box
+                    var categorySelect = document.getElementById('edit-product-category');
+                    categorySelect.querySelectorAll('option').forEach(function (option) {
+                        if (option.value == category) {
+                            option.selected = true;
+                        } else {
+                            option.selected = false;
+                        }
+                    });
+
+                    // Update the form action
+                    document.getElementById('edit-product-form').action = "{{ route('admin.product-list.update'," + productId + " ) }}";
                     // Open the edit product popup
                     document.getElementById('edit-product-popup').style.display = 'block';
                 });
@@ -440,13 +450,6 @@
                         })
                         .then(response => {
                             if (response.data.success) {
-                                // Swal.fire(
-                                //     'Deleted!',
-                                //     'Category has been deleted.',
-                                //     'success'
-                                // )
-
-                                // toast
                                 const Toast = Swal.mixin({
                                     toast: true,
                                     position: 'top-center',
@@ -488,21 +491,57 @@
         document.querySelectorAll('.delete-product').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = this.getAttribute('data-id');
-                if(confirm("Are you sure you want to delete this product?")) {
-                    $.ajax({
-                        url: '{{ url('product-list') }}',
-                        type: 'POST',
-                        data: { id: productId, action: 'deleteProduct' },
-                        success: function(response) {
-                            if (response == 'success') {
-                                // alert('Product deleted successfully.');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete(`/admin/product-list/${productId}`, {
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(response => {
+                            if (response.data.success) {
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-center',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Product has been deleted.'
+                                })
                                 location.reload();
                             } else {
-                                alert('Failed to delete Category.' + response);
+                                Swal.fire(
+                                    'Error!',
+                                    'Failed to delete the product.',
+                                    'error'
+                                )
                             }
-                        }
-                    })
-                }
+                        })
+                        .catch(error => {
+                            Swal.fire(
+                                'Error!',
+                                error.response.data.message || 'An error occurred.',
+                                'error'
+                            );
+                        });
+                    }
+                });
             });
         });
 

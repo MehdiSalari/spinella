@@ -2,39 +2,15 @@
 
 @section('content')
 
-<?php
-// $sql = 'SELECT 
-//             product.*, 
-//             category.title AS category_title 
-//         FROM product 
-//         INNER JOIN category 
-//         ON product.category_id = category.id LIMIT 10';
-// $result = mysqli_query($conn, $sql);
-// $products = [];
-// if (mysqli_num_rows($result) > 0) {
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         $products[] = $row;
-//     }
-// }
-
-// $sql = 'SELECT * FROM category';
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result) > 0) {
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         $categories[] = $row;
-//     }
-// }
-?>
-
     <!-- subheader -->
     <section id="subheader" class="jarallax text-light">
-        <img src="<?= asset('assets/images/background/bg-10.jpg') ?>" class="jarallax-img" alt="">
+        <img src="{{ asset('assets/images/background/' . __('product.header.image')) }}" class="jarallax-img" alt="">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center wow fadeInUp">
-                        <h2 class="s1 mb-40">Spinnela</h2>
-                        <h2 class="s2">Products</h2>
+                        <h2 class="s1 mb-40">{{ __('product.header.title') }}</h2>
+                        <h2 class="s2">{{ __('product.header.subtitle') }}</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Products</li>

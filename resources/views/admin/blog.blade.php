@@ -187,7 +187,7 @@
                                     <div class="input-group mg-b-pro-edt">
                                         <span class="input-group-addon"><i class="icon nalika-edit"
                                                 aria-hidden="true"></i></span>
-                                        <textarea style="resize: none" rows="7" class="form-control" name="lower_text," id="add-blog-text-lower"></textarea>
+                                        <textarea style="resize: none" rows="7" class="form-control" name="lower_text" id="add-blog-text-lower"></textarea>
                                     </div>
                                 </div>
                             </div>
