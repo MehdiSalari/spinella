@@ -31,5 +31,32 @@
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="<?=asset('assets/admin/css/font-awesome.min.css') ?>"> --}}
-
+@if (Session::get('locale') == 'fa')
+    <link rel="stylesheet" href="{{ asset('assets/css/stylefa.css') }}">
 </head>
+<style>
+    .custom-header-subtitle {
+        letter-spacing: normal !important;
+        margin-top: 40px !important;
+    }
+    .custom-header-text {
+        letter-spacing: normal !important;
+        margin-top: 40px !important;
+    }
+    .btn-slider {
+        letter-spacing: normal !important;
+    }
+    .lead {
+        letter-spacing: normal !important;
+    }
+    .s2.wow {
+        margin-top: 40px !important;
+    }
+    #mainmenu {
+        font-size: 20px !important;
+        letter-spacing: normal !important;
+    }
+</style>
+    @else
+</head>
+    @endif

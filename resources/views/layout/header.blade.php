@@ -19,10 +19,10 @@
                 <!-- mainmenu begin -->
                 <nav>
                     <ul id="mainmenu">
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
-                        <li><a href="{{ route('products') }}">Products</a></li>
-                        <li><a href="{{ route('about-us') }}">About</a></li>
-                        <li><a href="{{ route('contact-us') }}">Contact</a></li>
+                        <li><a href="{{ route('blog') }}">{{ __('home.header.blog') }}</a></li>
+                        <li><a href="{{ route('products') }}">{{ __('home.header.products') }}</a></li>
+                        <li><a href="{{ route('about-us') }}">{{ __('home.header.about') }}</a></li>
+                        <li><a href="{{ route('contact-us') }}">{{ __('home.header.contact') }}</a></li>
                     </ul>
                 </nav>
                 <div class="clearfix"></div>
@@ -35,8 +35,8 @@
     <div class="lang" id="lang">
         <img src="{{ asset('assets/images/language.png') }}" style="width: 30px; height: 30px">
         <div class="lang-dropdown">
-            <a href="en">English</a>
-            <a href="fa">فارسی</a>
+            <a href="{{ route('locale', 'en') }}">English</a>
+            <a href="{{ route('locale', 'fa') }}">فارسی</a>
         </div>
     </div>
 </header>

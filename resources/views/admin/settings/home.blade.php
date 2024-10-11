@@ -12,7 +12,9 @@
                                         <div class="product-status-wrap">
                                                 <!-- Home -->
                                                 <h4>Home</h4>
-                                                <form action="" method="POST">
+                                                <form action="{{ route('admin.settings.update', ['home', 'en']) }}" method="POST">
+                                                        @csrf
+                                                        @method('PATCH')
                                                         <!-- Slider 1 -->
                                                         <h5 style="color: #fff; font-weight: bold;">Slider 1</h5>
                                                         <div class="input-group mg-b-pro-edt">
@@ -22,7 +24,7 @@
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Title"
                                                                         value="{{ __('home.slider.slider1.title') }}"
-                                                                        name="sliderTitle1" id="edit-product-title"
+                                                                        name="slider1Title" id="edit-product-title"
                                                                         required>
                                                         </div>
                                                         <div class="input-group mg-b-pro-edt">
@@ -196,7 +198,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Title"
-                                                                                        value="{{ __('home.whyus.why1.title') }}"
+                                                                                        value="{{ __('home.why.why1.title') }}"
                                                                                         name="whyTitle1"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -207,7 +209,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Text"
-                                                                                        value="{{ __('home.whyus.why1.text') }}"
+                                                                                        value="{{ __('home.why.why1.text') }}"
                                                                                         name="whyText1"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -222,7 +224,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Title"
-                                                                                        value="{{ __('home.whyus.why2.title') }}"
+                                                                                        value="{{ __('home.why.why2.title') }}"
                                                                                         name="whyTitle2"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -233,7 +235,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Text"
-                                                                                        value="{{ __('home.whyus.why2.text') }}"
+                                                                                        value="{{ __('home.why.why2.text') }}"
                                                                                         name="whyText2"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -250,7 +252,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Title"
-                                                                                        value="{{ __('home.whyus.why3.title') }}"
+                                                                                        value="{{ __('home.why.why3.title') }}"
                                                                                         name="whyTitle3"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -261,7 +263,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Text"
-                                                                                        value="{{ __('home.whyus.why3.text') }}"
+                                                                                        value="{{ __('home.why.why3.text') }}"
                                                                                         name="whyText3"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -276,7 +278,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Title"
-                                                                                        value="{{ __('home.whyus.why4.title') }}"
+                                                                                        value="{{ __('home.why.why4.title') }}"
                                                                                         name="whyTitle4"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -287,7 +289,7 @@
                                                                                                 aria-hidden="true"></i></span>
                                                                                 <input type="text" class="form-control"
                                                                                         placeholder="Text"
-                                                                                        value="{{ __('home.whyus.why4.text') }}"
+                                                                                        value="{{ __('home.why.why4.text') }}"
                                                                                         name="whyText4"
                                                                                         id="edit-product-title"
                                                                                         required>
@@ -314,7 +316,7 @@
                                                                                 aria-hidden="true"></i></span>
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Subtitle"
-                                                                        value="{{ __('home.banner.banner1.subtitle') }}"
+                                                                        value="{{ __('home.banner.banner1.text') }}"
                                                                         name="bannerSub1" id="edit-product-title"
                                                                         required>
                                                         </div>
@@ -460,7 +462,7 @@
                                                                                 aria-hidden="true"></i></span>
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Subtitle"
-                                                                        value="{{ __('home.banner.banner2.subtitle') }}"
+                                                                        value="{{ __('home.banner.banner2.text') }}"
                                                                         name="bannerSub2" id="edit-product-title"
                                                                         required>
                                                         </div>

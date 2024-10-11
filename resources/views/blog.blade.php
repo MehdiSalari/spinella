@@ -52,10 +52,10 @@
                 <div class="col-md-12">
                     <div class="text-center wow fadeInUp">
                         <h2 class="s1 mb-40">{{ __('blog.header.title') }}</h2>
-                        <h2 class="s2">{{ __('blog.header.subtitle') }}</h2>
+                        <h2 class="s2"@if (Session::get('locale') == 'fa') style="letter-spacing: normal;" @endif()>{{ __('blog.header.subtitle') }}</h2>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">@if (Session::get(key: 'locale') == 'fa') خانه @else Home @endif()</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('home.header.blog') }}</li>
                         </ol>
                     </div>
                 </div>

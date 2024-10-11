@@ -8,10 +8,10 @@
             <div class="col-md-12">
                 <div class="text-center wow fadeInUp">
                     <h2 class="s1 mb-40">{{ __('about.header.title') }}</h2>
-                    <h2 class="s2">{{ __('about.header.subtitle') }}</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">About</li>
+                    <h2 class="s2" @if (Session::get('locale') == 'fa') style="letter-spacing: normal;" @endif()>{{ __('about.header.subtitle') }}</h2>
+                    <ol class="breadcrumb ltr">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">@if (Session::get(key: 'locale') == 'fa') خانه @else Home @endif()</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('home.header.about') }}</li>
                     </ol>
                 </div>
             </div>
@@ -21,7 +21,7 @@
 <!-- subheader close -->
 
 <!-- content begin -->
-<div id="content" class="no-bottom no-top">
+<div id="content" class="no-bottom no-top @if (Session::get('locale') == 'fa') rtl @endif()">
     <!-- section begin -->
     <section>
         <div class="container">

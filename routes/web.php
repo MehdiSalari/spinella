@@ -11,10 +11,12 @@ use App\Http\Controllers\productController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 use PHPUnit\Framework\Attributes\Group;
 
+Route::get('/locale/{lang}', [SettingController::class, 'setLocale'])->name('locale');
+
 Route::get('/', [pageController::class, 'home'])->name('home');
-Route::get('/en', [pageController::class, 'home'])->name('home');
 Route::get('/blog', [pageController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [pageController::class, 'blogSingle'])->name('blog.show');
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
@@ -22,14 +24,6 @@ Route::get('/contact-us', [pageController::class, 'contact'])->name('contact-us'
 Route::post('/contact-us', [TicketController::class, 'store'])->name('contact-us.store');
 Route::get('/about-us', [pageController::class, 'about'])->name('about-us');
 Route::get('/products', [pageController::class, 'products'])->name('products');
-
-Route::get('/en' , function () {
-    return redirect('/');
-})->name('en');
-
-Route::group(['prefix' => '/fa'], function () {
-    Route::get('/', [faPageController::class, 'home'])->name('fa.home');
-});
 
 Route::get('/login', [adminController::class, 'loginView'])->name('login.view');
 Route::post('/login', [adminController::class, 'login'])->name('login');

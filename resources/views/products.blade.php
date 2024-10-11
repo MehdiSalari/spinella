@@ -37,9 +37,9 @@
                     </ul> -->
                     <ul id="filters" class="wow fadeInUp" data-wow-delay="0s">
                         <li><a href="#" data-filter="*" class="selected">All</a></li>
-                        <?php foreach ($categories as $category) { ?>
+                        @foreach ($categories as $category)
                         <li><a href="#" data-filter=".cat{{ $category->id }}">{{ $category->title }}</a></li>
-                        <?php } ?>
+                        @endforeach
                     </ul>
                     <div class="spacer-single"></div>
                 </div>
@@ -48,7 +48,7 @@
             <div class="container">
                 <div id="gallery" class="row g-4">
                     <!-- Item -->
-                    <?php foreach ($products as $product) { ?>
+                    @foreach ($products as $product)
                     <div class="col-lg-4 item cat{{ $product->category_id }}">
                         <div class="pb-3 shadow">
                             <div style="border-radius:1rem">
@@ -67,115 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    <?php } ?>
-
-                    <!-- <div class="col-lg-4 item non-coffee">
-                        <div class="pb-3 shadow">
-                            <div style="border-radius:1rem">
-                                <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
-                                    <a>
-                                        <img src="<?= asset('assets/images/gallery/2.jpg') ?>" alt="">
-                                    </a>
-                                </figure>
-                                <div class="mt-3 px-3 rounded-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus, assumenda
-                                        cum
-                                        dolorem eaque </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 item non-coffee">
-                        <div class="pb-3 shadow">
-                            <div style="border-radius:1rem">
-                                <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
-                                    <a>
-                                        <img src="<?= asset('assets/images/gallery/3.jpg') ?>" alt="">
-                                    </a>
-                                </figure>
-                                <div class="mt-3 px-3 rounded-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus, assumenda
-                                        cum
-                                        dolorem eaque </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 item coffee">
-                        <div class="pb-3 shadow">
-                            <div style="border-radius:1rem">
-                                <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
-                                    <a>
-                                        <img src="<?= asset('assets/images/gallery/4.jpg') ?>" alt="">
-                                    </a>
-                                </figure>
-                                <div class="mt-3 px-3 rounded-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus, assumenda
-                                        cum
-                                        dolorem eaque </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 item main-dishes">
-                        <div class="pb-3 shadow">
-                            <div style="border-radius:1rem">
-                                <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
-                                    <a>
-                                        <img src="<?= asset('assets/images/gallery/5.jpg') ?>" alt="">
-                                    </a>
-                                </figure>
-                                <div class="mt-3 px-3 rounded-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus, assumenda
-                                        cum
-                                        dolorem eaque </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 item breads">
-                        <div class="pb-3 shadow">
-                            <div style="border-radius:1rem">
-                                <figure class="hover-zoom position-relative rounded-20 overflow-hidden">
-                                    <a>
-                                        <img src="<?= asset('assets/images/gallery/6.jpg') ?>" alt="">
-                                    </a>
-                                </figure>
-                                <div class="mt-3 px-3 rounded-20">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus, assumenda
-                                        cum
-                                        dolorem eaque </p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-danger m-0">$12000</p>
-                                        <a href="single.php" class="px-3 py-1 rounded-1 btn-danger">Show</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
+                    @endforeach
                 </div>
-
             </div>
         </section>
     </div>

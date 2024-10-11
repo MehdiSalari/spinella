@@ -1,22 +1,9 @@
 @extends('layout.master')
 
 @section('content')
-<!-- <style>
-    footer {
-        margin-bottom: -27px;
-    }
-</style> -->
-<!-- <body>
-
-    <div id="wrapper"> -->
-
-        <!-- header begin -->
-        <!-- header close -->
-
-        <!-- content begin -->
         <div id="content" class="no-bottom no-top">
 
-            <!-- parallax section -->
+            <!-- slider section begin -->
             <section id="section-slider" class="fullwidthbanner-container" aria-label="section-slider">
                 <div id="revolution-slider">
                     <ul>
@@ -51,7 +38,7 @@
                             <div class="tp-caption" data-x="center" data-y="450" data-width="none" data-height="none"
                                 data-whitespace="nowrap" data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="#products-section" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">{{ __('home.slider.slider1.button') }}</a>
                             </div>
                         </li>
 
@@ -86,7 +73,7 @@
                             <div class="tp-caption" data-x="center" data-y="450" data-width="none" data-height="none"
                                 data-whitespace="nowrap" data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="#products-section" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">{{ __('home.slider.slider2.button') }}</a>
                             </div>
                         </li>
 
@@ -121,16 +108,16 @@
                                 data-height="none" data-whitespace="nowrap"
                                 data-transform_in="y:100px;opacity:0;s:500;e:Power2.easeOut;"
                                 data-transform_out="opacity:0;y:-100;s:800;e:Power2.easeInOut;" data-start="800">
-                                <a href="#products-section" class="btn-slider">View Products</a>
+                                <a href="#products-section" class="btn-slider">{{ __('home.slider.slider3.button') }}</a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </section>
-            <!-- parallax section close -->
+            <!-- slider section close -->
 
-            <!-- section begin -->
-            <section>
+            <!-- interview begin -->
+            <section @if (Session::get('locale') == 'fa') class="rtl" @endif()>
                 <div class="container">
                     <div class="row aligns-item-center">
                         <div class="col-lg-6">
@@ -147,19 +134,18 @@
                     </div>
                 </div>
             </section>
-            <!-- section close -->
+            <!-- interview close -->
 
-            <!-- section begin -->
-            <section class="no-top">
+            <!-- why-us section begin -->
+            <section class="no-top @if (Session::get('locale') == 'fa') rtl @endif()">
                 <div class="container">
-                    <div class="row bb gx-5 text-center">
+                    <div class="row gx-5 text-center">
 
                         <div class="col-lg-3 wow fadeInRight">
                             <img src="{{ asset('assets/images/misc/icon-2.png') }}" alt="">
                             <div class="spacer-single"></div>
                             <h3>{{ __('home.why.why1.title') }}</h3>
                             <p>{{ __('home.why.why1.text') }}</p>
-                            <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".1s">
@@ -167,7 +153,6 @@
                             <div class="spacer-single"></div>
                             <h3>{{__('home.why.why2.title') }}</h3>
                             <p>{{ __('home.why.why2.text') }}</p>
-                            <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".2s">
@@ -175,7 +160,6 @@
                             <div class="spacer-single"></div>
                             <h3>{{ __('home.why.why3.title') }}</h3>
                             <p>{{ __('home.why.why3.text') }}</p>
-                            <a href="#" class="btn-custom">Read More</a>
                         </div>
 
                         <div class="col-lg-3 wow fadeInRight" data-wow-delay=".3s">
@@ -183,17 +167,17 @@
                             <div class="spacer-single"></div>
                             <h3>{{ __('home.why.why4.title') }}</h3>
                             <p>{{ __('home.why.why4.text') }}</p>
-                            <a href="#" class="btn-custom">Read More</a>
+                            <!-- <a href="#" class="btn-custom">Read More</a> -->
                         </div>
 
                     </div>
                 </div>
             </section>
-            <!-- section close -->
+            <!-- why-us section close -->
 
 
-            <!-- section begin -->
-            <section id="section-title-1" class="text-light jarallax">
+            <!-- banner section begin -->
+            <section id="section-title-1" class="text-light jarallax @if (Session::get('locale') == 'fa') rtl @endif()">
                 <img src="{{ asset('assets/images/background/bg-2.jpg') }}" class="jarallax-img" alt="">
                 <div class="container">
                     <div class="row">
@@ -207,7 +191,7 @@
                     </div>
                 </div>
             </section>
-            <!-- section close -->
+            <!-- banner section close -->
 
 
             <!-- section begin -->
@@ -215,44 +199,69 @@
                 <img src="{{ asset('assets/images/background/bg-3.jpg') }}" class="jarallax-img" alt="">
                 <div class="container">
                     <div class="row wow fadeInLeft">
-                        <div class="col-lg-6">
-                            <div class="menu-item thead">
-                                <div class="c1">{{ __('home.products.title') }}</div>
+                        <div class="col-lg-6 @if (Session::get('locale') == 'fa') rtl @endif()" style="background-size: cover;">
+                            <div class="menu-item thead" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;"></div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.title') }}</div>
                             </div>
 
 
-                            <div class="menu-item">
-                                <div class="c1">{{ __('home.products.product1.name') }}<span>{{ __('home.products.product1.desc') }}</span></div>
+                            <div class="menu-item" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;">
+                                    <img style="width: 100px; height: 100px;" src="{{ asset('assets/images/misc/' . __('home.products.product1.image')) }}" alt="">
+                                </div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.product1.name') }}
+                                    <span>{{ __('home.products.product1.desc') }}</span></div>
                             </div>
 
-                            <div class="menu-item">
-                                <div class="c1">{{ __('home.products.product2.name') }}<span>{{ __('home.products.product2.desc') }}</span></div>
+
+                            <div class="menu-item" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;">
+                                    <img style="width: 100px; height: 100px;" src="{{ asset('assets/images/misc/' . __('home.products.product2.image')) }}" alt="">
+                                </div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.product2.name') }}
+                                    <span>{{ __('home.products.product2.desc') }}</span></div>
                             </div>
 
-                            <div class="menu-item">
-                                <div class="c1">{{ __('home.products.product3.name') }}<span>{{ __('home.products.product3.desc') }}</span></div>
+                            <div class="menu-item" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;">
+                                    <img style="width: 100px; height: 100px;" src="{{ asset('assets/images/misc/' . __('home.products.product3.image')) }}" alt="">
+                                </div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.product3.name') }}
+                                    <span>{{ __('home.products.product3.desc') }}</span>
+                                </div>
                             </div>
 
-                            <div class="menu-item">
-                                <div class="c1">{{ __('home.products.product4.name') }}<span>{{ __('home.products.product4.desc') }}</span></div>
+
+                            <div class="menu-item" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;">
+                                    <img style="width: 100px; height: 100px;" src="{{ asset('assets/images/misc/' . __('home.products.product4.image')) }}" alt="">
+                                </div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.product4.name') }}
+                                    <span>{{ __('home.products.product4.desc') }}</span></div>
                             </div>
 
-                            <div class="menu-item">
-                                <div class="c1">{{ __('home.products.product5.name') }}<span>{{ __('home.products.product5.desc') }}</span></div>
+
+                            <div class="menu-item" style="background-size: cover;">
+                                <div class="c3" style="background-size: cover;">
+                                    <img style="width: 100px; height: 100px;" src="{{ asset('assets/images/misc/' . __('home.products.product5.image')) }}" alt="">
+                                </div>
+                                <div class="c1" style="background-size: cover;">{{ __('home.products.product5.name') }}
+                                    <span>{{ __('home.products.product5.desc') }}</span></div>
                             </div>
 
-                            <div class="spacer-single"></div>
+                            <div class="spacer-single" style="background-size: cover;"></div>
 
-                            <a href="products" class="btn-custom">View All Products</a>
                         </div>
                     </div>
+                    <!-- <a href="products" class="btn-custom">{{ __('home.products.button') }}</a> -->
                 </div>
             </section>
             <!-- section close -->
 
 
             <!-- section begin -->
-            <section id="section-title-2" class="text-light jarallax">
+            <section id="section-title-2" class="text-light jarallax @if (Session::get('locale') == 'fa') rtl @endif()">
                 <img src="{{ asset('assets/images/background/bg-4.jpg') }}" class="jarallax-img" alt="">
                 <div class="container">
                     <div class="row wow fadeInRight">
@@ -399,7 +408,7 @@
 
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="col-lg-6 offset-lg-6 wow fadeInRight">
+                        <div class="col-lg-6 offset-lg-6 wow fadeInRight @if (Session::get('locale') == 'fa') rtl @endif()">
                             <div class="padding80">
                                 <div class="text-center">
                                     <h2 class="s1 id-color-2 mb-40 wow fadeInUp">{{ __('home.recipe.title') }}</h2>
@@ -409,8 +418,8 @@
                                 <blockquote>
                                     {{ __('home.recipe.text') }}
                                     <span style="float: right; top: 20px">
-                                        <a href="#" style="background-color: #f5f5f5;color: #9c1126" class="btn-custom">
-                                            View recipes
+                                        <a href="blog" style="background-color: #f5f5f5;color: #9c1126" class="btn-custom">
+                                            {{ __('home.header.blog') }}
                                         </a></span>
                                 </blockquote>
                             </div>
@@ -420,7 +429,7 @@
             </section>
 
             <!-- section begin -->
-            <section id="cta" aria-label="slogan" class="call-to-action">
+            <section id="cta" aria-label="slogan" class="call-to-action @if (Session::get('locale') == 'fa') rtl @endif()">
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-lg-13 text-lg-center text-sm-center">
