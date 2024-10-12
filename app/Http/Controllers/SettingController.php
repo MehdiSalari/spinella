@@ -5,44 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Laravel\Facades\Image;
 use Session;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        // $settings = Setting::where('page', $page)->get()->toArray();
-        // return view('admin.settings', compact('settings'));
         return redirect('admin/settings/home');
     }
 
     public function home()
     {
-        Session::put('locale', 'en');
         return view('admin.settings.home');
     }
 
     public function blog()
     {
-        Session::put('locale', 'en');
         return view('admin.settings.blog');
     }
 
     public function about()
     {
-        Session::put('locale', 'en');
         return view('admin.settings.about-us');
     }
 
     public function contact()
     {
-        Session::put('locale', 'en');
         return view('admin.settings.contact-us');
     }
 
     public function products()
     {
-        Session::put('locale', 'en');
         return view('admin.settings.product');
     }
 
@@ -58,172 +52,452 @@ class SettingController extends Controller
             case 'home':
                 if ($request->hasFile('sliderImg1')) {
                     $sliderImg1 = $request->file('sliderImg1');
-                    $sliderImg1Name = 'slide-1' . $sliderImg1->getClientOriginalExtension();
+                    $sliderImg1Name = 'slide-1.' . $sliderImg1->getClientOriginalExtension();
                     $sliderImg1->move(public_path('assets/images/slider'), $sliderImg1Name);
+                }
+
+                if ($request->hasFile('sliderImg2')) {
+                    $sliderImg2 = $request->file('sliderImg2');
+                    $sliderImg2Name = 'slide-2.' . $sliderImg2->getClientOriginalExtension();
+                    $sliderImg2->move(public_path('assets/images/slider'), $sliderImg2Name);
+                }
+
+                if ($request->hasFile('sliderImg3')) {
+                    $sliderImg3 = $request->file('sliderImg3');
+                    $sliderImg3Name = 'slide-3.' . $sliderImg3->getClientOriginalExtension();
+                    $sliderImg3->move(public_path('assets/images/slider'), $sliderImg3Name);
+                }
+
+                if ($request->hasFile('interviewImg')) {
+                    $interviewImg = $request->file('interviewImg');
+                    $interviewImgName = 'bg-1.' . $interviewImg->getClientOriginalExtension();
+                    $interviewImg->move(public_path('assets/images/background'), $interviewImgName);
+                }
+
+                if ($request->hasFile('bannerImg1')) {
+                    $bannerImg1 = $request->file('bannerImg1');
+                    $bannerImg1Name = 'bg-2.' . $bannerImg1->getClientOriginalExtension();
+                    $bannerImg1->move(public_path('assets/images/background'), $bannerImg1Name);
+                }
+
+                if ($request->hasFile('bannerImg2')) {
+                    $bannerImg2 = $request->file('bannerImg2');
+                    $bannerImg2Name = 'bg-4.' . $bannerImg2->getClientOriginalExtension();
+                    $bannerImg2->move(public_path('assets/images/background'), $bannerImg2Name);
+                }
+
+                if ($request->hasFile('productImg')) {
+                    $productImg = $request->file('productImg');
+                    $productImgName = 'bg-3.' . $productImg->getClientOriginalExtension();
+                    $productImg->move(public_path('assets/images/background'), $productImgName);
+                }
+
+                if ($request->hasFile('productImg1')) {
+                    $productImg1 = $request->file('productImg1');
+                    $productImg1Name = 'p1.' . $productImg1->getClientOriginalExtension();
+                    $productImg1->move(public_path('assets/images/misc'), $productImg1Name);
+                }
+
+                if ($request->hasFile('productImg2')) {
+                    $productImg2 = $request->file('productImg2');
+                    $productImg2Name = 'p2.' . $productImg2->getClientOriginalExtension();
+                    $productImg2->move(public_path('assets/images/misc'), $productImg2Name);
+                }
+
+                if ($request->hasFile('productImg3')) {
+                    $productImg3 = $request->file('productImg3');
+                    $productImg3Name = 'p3.' . $productImg3->getClientOriginalExtension();
+                    $productImg3->move(public_path('assets/images/misc'), $productImg3Name);
+                }
+
+                if ($request->hasFile('productImg4')) {
+                    $productImg4 = $request->file('productImg4');
+                    $productImg4Name = 'p4.' . $productImg4->getClientOriginalExtension();
+                    $productImg4->move(public_path('assets/images/misc'), $productImg4Name);
+                }
+
+                if ($request->hasFile('productImg5')) {
+                    $productImg5 = $request->file('productImg5');
+                    $productImg5Name = 'p5.' . $productImg5->getClientOriginalExtension();
+                    $productImg5->move(public_path('assets/images/misc'), $productImg5Name);
+                }
+
+                if ($request->hasFile('descImg')) {
+                    $descImg = $request->file('descImg');
+                    $descImgName = 'bg-5.' . $descImg->getClientOriginalExtension();
+                    $descImg->move(public_path('assets/images/background'), $descImgName);
+                }
+
+                if ($request->hasFile('galleryImg1')) {
+                    $galleryImg1 = $request->file('galleryImg1');
+                    $galleryImg1Name = 'pf1.' . $galleryImg1->getClientOriginalExtension();
+                    $galleryImg1->move(public_path('assets/images/menu/view'), $galleryImg1Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg1Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg1Name"));
+                }
+
+                if ($request->hasFile('galleryImg2')) {
+                    $galleryImg2 = $request->file('galleryImg2');
+                    $galleryImg2Name = 'pf2.' . $galleryImg2->getClientOriginalExtension();
+                    $galleryImg2->move(public_path('assets/images/menu/view'), $galleryImg2Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg2Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg2Name"));
+                }
+
+                if ($request->hasFile('galleryImg3')) {
+                    $galleryImg3 = $request->file('galleryImg3');
+                    $galleryImg3Name = 'pf3.' . $galleryImg3->getClientOriginalExtension();
+                    $galleryImg3->move(public_path('assets/images/menu/view'), $galleryImg3Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg3Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg3Name"));
+                }
+
+                if ($request->hasFile('galleryImg4')) {
+                    $galleryImg4 = $request->file('galleryImg4');
+                    $galleryImg4Name = 'pf4.' . $galleryImg4->getClientOriginalExtension();
+                    $galleryImg4->move(public_path('assets/images/menu/view'), $galleryImg4Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg4Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg4Name"));
+                }
+
+                if ($request->hasFile('galleryImg5')) {
+                    $galleryImg5 = $request->file('galleryImg5');
+                    $galleryImg5Name = 'pf5.' . $galleryImg5->getClientOriginalExtension();
+                    $galleryImg5->move(public_path('assets/images/menu/view'), $galleryImg5Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg5Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg5Name"));
+                }
+
+                if ($request->hasFile('galleryImg6')) {
+                    $galleryImg6 = $request->file('galleryImg6');
+                    $galleryImg6Name = 'pf6.' . $galleryImg6->getClientOriginalExtension();
+                    $galleryImg6->move(public_path('assets/images/menu/view'), $galleryImg6Name);
+                    $image = Image::read(public_path("assets/images/menu/view/$galleryImg6Name"));
+                    $image->resize(800,800)->save(public_path("assets/images/menu/$galleryImg6Name"));
+                }
+
+                if ($request->hasFile('recipeImg')) {
+                    $recipeImg = $request->file('recipeImg');
+                    $recipeImgName = 'bg-side-1.' . $recipeImg->getClientOriginalExtension();
+                    $recipeImg->move(public_path('assets/images/background'), $recipeImgName);
+                }
+                
+                if ($request->hasFile('footerLogo')) {
+                    $footerLogo = $request->file('footerLogo');
+                    $footerLogoName = 'footer-logo1.' . $footerLogo->getClientOriginalExtension();
+                    $footerLogo->move(public_path('assets/images'), $footerLogoName);
                 }
 
                 $newData = [
                     'header' => [
-                        'blog' => 'Blog',
-                        'contact' => 'Contact Us',
-                        'about' => 'About Us',
-                        'products' => 'Products',
+                        'blog' => __('home.header.blog'),
+                        'contact' => __('home.header.contact'),
+                        'about' => __('home.header.about'),
+                        'products' => __('home.header.products'),
                     ],
                     'slider' => [
                         'slider1' => [
                             'title' => $request->sliderTitle1,
                             'subtitle' => $request->sliderSub1,
                             'text' => $request->sliderText1,
-                            'image' => 'slide-1.jpg',
-                            'button' => 'View Products',
+                            'image' => $sliderImg1Name ?? __('home.slider.slider1.image'),
+                            'button' => __('home.slider.slider1.button'),
                         ],
                         'slider2' => [
-                            'title' => 'Spinella',
-                            'subtitle' => 'Saffron',
-                            'text' => 'Experience purity with Spinella; Where authenticity and quality come together in each strand of saffron.',
-                            'image' => 'slide-2.jpg',
-                            'button' => 'View Products',
+                            'title' => $request->sliderTitle2,
+                            'subtitle' => $request->sliderSub2,
+                            'text' => $request->sliderText2,
+                            'image' => $sliderImg2Name ?? __('home.slider.slider2.image'),
+                            'button' => __('home.slider.slider2.button'),
                         ],
                         'slider3' => [
-                            'title' => 'Spinella',
-                            'subtitle' => 'Saffron',
-                            'text' => 'Experience purity with Spinella; Where authenticity and quality come together in each strand of saffron.',
-                            'image' => 'slide-3.jpg',
-                            'button' => 'View Products',
+                            'title' => $request->sliderTitle3,
+                            'subtitle' => $request->sliderSub3,
+                            'text' => $request->sliderText3,
+                            'image' => $sliderImg3Name ?? __('home.slider.slider3.image'),
+                            'button' => __('home.slider.slider3.button'),
                         ],
                     ],
                     'interview' => [
-                        'title' => 'Discovereeeee',
-                        'subtitle' => 'Our Story',
-                        'text' => 'Spinella is the Latin root of the word spinel, which means ruby. The reason for this name, apart from the color, is the valuable similarity of ruby and saffron as the most expensive spices in the world, as well as the many healing properties of saffron and ruby, which have been known for a long time in our history and culture.',
-                        'image' => 'bg-1.jpg',
+                        'title' => $request->interviewTitle,
+                        'subtitle' => $request->interviewSub,
+                        'text' => $request->interviewText,
+                        'image' => $interviewImgName ?? __('home.interview.image'),
                     ],
                     'why' => [
                         'why1' => [
-                            'title' => 'Unique packaging',
-                            'text' => 'Our unique packaging preserves the freshness and quality of our products, ensuring an exceptional experience from first glance to final taste.',
+                            'title' => $request->whyTitle1,
+                            'text' => $request->whyText1,
                         ],
                         'why2' => [
-                            'title' => 'Premium quality',
-                            'text' => 'Our premium quality products are crafted with the highest standards, delivering unmatched flavor and excellence in every detail.',
+                            'title' => $request->whyTitle2,
+                            'text' => $request->whyText2,
                         ],
                         'why3' => [
-                            'title' => 'Direct Supply',
-                            'text' => 'We ensure direct supply from farm to you, guaranteeing freshness and authenticity in every product.',
+                            'title' => $request->whyTitle3,
+                            'text' => $request->whyText3,
                         ],
                         'why4' => [
-                            'title' => 'Product with your brand',
-                            'text' => 'Upon your request, we have the ability to package all our products with your own brand and present them to you.',
+                            'title' => $request->whyTitle4,
+                            'text' => $request->whyText4,
                         ],
                     ],
                     'banner' => [
                         'banner1' => [
-                            'title' => 'Premium',
-                            'text' => 'Saffron',
-                            'image' => 'bg-2.jpg',
+                            'title' => $request->bannerTitle1,
+                            'text' => $request->bannerText1,
+                            'image' => $bannerImg1Name ?? __('home.banner.banner1.image'),
                         ],
                         'banner2' => [
-                            'title' => 'Spinella',
-                            'text' => 'From Our Fields to Your Table',
-                            'image' => 'bg-4.jpg',
+                            'title' => $request->bannerTitle2,
+                            'text' => $request->bannerText2,
+                            'image' => $bannerImg2Name ?? __('home.banner.banner2.image'),
                         ],
                     ],
                     'products' => [
-                        'title' => 'Types of Saffron',
-                        'image' => 'bg-3.jpg',
+                        'title' => $request->productsTitle,
+                        'image' => $productImgName ?? __('home.products.image'),
                         'product1' => [
-                            'image' => 'p1.png',
-                            'name' => 'Negin Saffron',
-                            'desc' => 'This type of saffron is similar to normal Pushal saffron in terms of the amount of cream it contains, but it is thicker than normal Pushal. It has a high color strength and fragrance, and is visually outstanding in volume and beauty.',
+                            'image' => $sliderImg1Name ?? __('home.products.product1.image'),
+                            'name' => $request->productName1,
+                            'desc' => $request->productDesc1,
                         ],
                         'product2' => [
-                            'image' => 'p2.png',
-                            'name' => 'Sargol Saffron',
-                            'desc' => 'This type of saffron is completely pure, consisting of cut saffron threads without the cream. It has a very high color strength, though there are broken threads among them.',
+                            'image' => $sliderImg2Name ?? __('home.products.product2.image'),
+                            'name' => $request->productName2,
+                            'desc' => $request->productDesc2,
                         ],
                         'product3' => [
-                            'image' => 'p3.png',
-                            'name' => 'Pushal Saffron',
-                            'desc' => 'This type of saffron consists of threads that include 2-3 mm of cream. Due to the presence of cream (the white part of saffron), it has a strong fragrance.',
+                            'image' => $sliderImg3Name ?? __('home.products.product3.image'),
+                            'name' => $request->productName3,
+                            'desc' => $request->productDesc3,
                         ],
                         'product4' => [
-                            'image' => 'p4.png',
-                            'name' => 'Bunch Saffron',
-                            'desc' => 'This type of saffron includes the entire saffron thread. It consists of stigmas with cream, where the red part of the saffron (stigma) is neatly arranged together and tied with thread in a bunch.',
+                            'image' => $sliderImg4Name ?? __('home.products.product4.image'),
+                            'name' => $request->productName4,
+                            'desc' => $request->productDesc4,
                         ],
                         'product5' => [
-                            'image' => 'p5.png',
-                            'name' => 'Konj (White)',
-                            'desc' => 'When the Sargol saffron is separated from the bunch saffron, the remaining white or root part is called "Konj".',
+                            'image' => $sliderImg5Name ?? __('home.products.product5.image'),
+                            'name' => $request->productName5,
+                            'desc' => $request->productDesc5,
                         ],
-                        'button' => 'View All Products',
+                        'button' => __('home.products.button'),
                     ],
                     'desc' => [
-                        'text' => 'Spinella is a leading company specializing in the production and export of premium agricultural products, including saffron, dried fruits, spices, and nuts. Our name, derived from the Latin word "spinel," meaning ruby, reflects the rich color and high value of our offerings. Utilizing top-notch production and packaging methods, we deliver high-quality products to global markets while adhering to sustainability and environmental respect. At Spinella, our dedicated and experienced team is committed to providing exceptional products and services to earn the trust and satisfaction of our customers.',
-                        'image' => 'bg-5.jpg',
+                        'text' => $request->descText,
+                        'image' => $descImgName ?? __('home.desc.image'),
                     ],
                     'gallery' => [
-                        'image1' => 'pf (1)',
-                        'image2' => 'pf (2)',
-                        'image3' => 'pf (3)',
-                        'image4' => 'pf (4)',
-                        'image5' => 'pf (5)',
-                        'image6' => 'pf (6)',
+                        'image1' => $galleryImg1Name ?? __('home.gallery.image1'),
+                        'image2' => $galleryImg2Name ?? __('home.gallery.image2'),
+                        'image3' => $galleryImg3Name ?? __('home.gallery.image3'),
+                        'image4' => $galleryImg4Name ?? __('home.gallery.image4'),
+                        'image5' => $galleryImg5Name ?? __('home.gallery.image5'),
+                        'image6' => $galleryImg6Name ?? __('home.gallery.image6'),
                     ],
                     'recipe' => [
-                        'title' => 'Recipe',
-                        'subtitle' => 'Foods with Saffron',
-                        'text' => 'In this section, recipes for cooking some dishes with saffron have been taught. Click to view these recipes.',
-                        'image' => 'bg-side-1.jpg',
+                        'title' => $request->recipeTitle,
+                        'subtitle' => $request->recipeSub,
+                        'text' => $request->recipeText,
+                        'image' => $recipeImgName ?? __('home.recipe.image'),
                     ],
                     'slogan' => [
-                        'title' => 'Spinella offers Original and Premium Selection Products.',
+                        'title' => $request->sloganTitle,
                     ],
                     'footer' => [
                         'contact' => [
-                            'title' => 'Contact Us',
-                            'address' => 'No. 3, 2nd floor, Shahab St., West Mehrdad Alley, Qaitarieh-Pourheidari-Tehran',
-                            'phone' => '+98 900 68 900 84',
-                            'email' => 'info@spinellasaffron.com',
+                            'title' => __('home.footer.contact.title'),
+                            'address' => $request->footerAddress,
+                            'phone' => $request->footerPhone,
+                            'email' => $request->footerEmail,
                         ],
                         'links' => [
-                            'title' => 'Quick Links',
+                            'title' => __('home.footer.links.title'),
                         ],
                         'subscribe'=> [
-                            'title' => 'Subscribe to the newsletter',
-                            'email' => 'Enter your email',
-                            'button' => 'Subscribe',
+                            'title' => __('home.footer.subscribe.title'),
+                            'email' => __('home.footer.subscribe.email'),
+                            'button' => __('home.footer.subscribe.button'),
                         ],
                         'info' => [
-                            'logo' => 'footer-logo1.png',
-                            'desc' => 'Spinella exports premium Iranian saffron, dried fruits, spices, and nuts. We are committed to delivering the highest quality products to our customers worldwide.',
+                            'logo' => $footerLogoName ?? __('home.footer.info.logo'),
+                            'desc' => $request->footerDesc,
                         ],
                         'social' => [
-                            'fb' => 'https://facebook.com/spinellasaffron',
-                            'ig' => 'https://instagram.com/spinellasaffron',
-                            'wa' => 'https://wa.me/989006890084',
-                            'tg' => 'https://t.me/+989006890084',
-                            'sk' => 'skype:+989006890084?call',
+                            'fb' => $request->footerFb,
+                            'ig' => $request->footerIg,
+                            'wa' => $request->footerWa,
+                            'tg' => $request->footerTg,
+                            'sk' => $request->footerSk,
                         ],
                         'copyright'=> [
-                            'text' => '© 2023-'.date('y').' Spinella Saffron Co. All rights reserved.',
-                            'powered' => 'Powered by',
-                            'link' => 'https://https://sepidargroup.com',
-                            'name' => '  Sepidar Group',
+                            'text' => __('home.footer.copyright.text'),
+                            'powered' => __('home.footer.copyright.powered'),
+                            'link' => __('home.footer.copyright.link'),
+                            'name' => __('home.footer.copyright.name'),
                         ],
                     ],
                 ];
+
                 break;
+
             case 'blog':
+                if ($request->hasFile('headerImg')) {
+                    $image = $request->file('headerImg');
+                    $headerImgName = 'bg-8.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/background'), $headerImgName);
+                }
+
+                $newData = [
+                    'header' => [
+                        'title' => $request->headerTitle, 
+                        'subtitle' => $request->headerSub,
+                        'image' => $headerImgName ?? __('blog.header.image'),
+                    ],
+                ];
 
                 break;
+
             case 'about':
+                if ($request->hasFile('headerImg')) {
+                    $image = $request->file('headerImg');
+                    $headerImgName = 'bg-7.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/background'), $headerImgName);
+                }
+
+                if ($request->hasFile('bodyImg1')) {
+                    $image = $request->file('bodyImg1');
+                    $bodyImg1Name = '1.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/misc'), $bodyImg1Name);
+                }
+
+                if ($request->hasFile('bodyImg2')) {
+                    $image = $request->file('bodyImg2');
+                    $bodyImg2Name = '2.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/misc'), $bodyImg2Name);
+                }
+
+                if ($request->hasFile('bannerImg')) {
+                    $image = $request->file('bannerImg');
+                    $bannerImgName = 'bg-2.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/background'), $bannerImgName);
+                }
+
+                if ($request->hasFile('achievementImg1')) {
+                    $image = $request->file('achievementImg1');
+                    $achievementImg1Name = '1.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/team'), $achievementImg1Name);
+                }
+
+                if ($request->hasFile('achievementImg2')) {
+                    $image = $request->file('achievementImg2');
+                    $achievementImg2Name = '2.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/team'), $achievementImg2Name);
+                }
+
+                if ($request->hasFile('achievementImg3')) {
+                    $image = $request->file('achievementImg3');
+                    $achievementImg3Name = '3.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/team'), $achievementImg3Name);
+                }
+
+                if ($request->hasFile('achievementImg4')) {
+                    $image = $request->file('achievementImg4');
+                    $achievementImg4Name = '4.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/team'), $achievementImg4Name);
+                }
+
+                $newData = [
+                    'header' => [
+                        'title' => $request->headerTitle, 
+                        'subtitle' => $request->headerSub,
+                        'image' => $headerImgName ?? __('about.header.image'),
+                    ],
+                    'body' => [
+                        'title' => $request->bodyTitle,
+                        'p1' => $request->bodyP1,
+                        'p2' => $request->bodyP2,
+                        'p3' => $request->bodyP3,
+                        'image1' => $bodyImg1Name ?? __('about.body.image1'),
+                        'image2' => $bodyImg2Name ?? __('about.body.image2'),
+                        'feedback' => [
+                            'number' => $request->feedbackNum,
+                            'text' => $request->feedbackText
+                        ],
+                        'percent' => [
+                            'number' => $request->percentNum,
+                            'text' => $request->percentText
+                        ],
+                    ],
+                    'banner' => [
+                        'title' => $request->bannerTitle,
+                        'subtitle' => $request->bannerSub,
+                        'image' => $bannerImgName ?? __('about.banner.image'),
+                    ],
+                    'achievement'=> [
+                        'image1' => $achievementImg1Name ?? __('about.achievement.image1'),
+                        'title1' => $request->achievementTitle1,
+                        'text1' => $request->achievementText1,
+                        'image2' => $achievementImg2Name ?? __('about.achievement.image2'),
+                        'title2' => $request->achievementTitle2,
+                        'text2' => $request->achievementText2,
+                        'image3' => $achievementImg3Name ?? __('about.achievement.image3'),
+                        'title3' => $request->achievementTitle3,
+                        'text3' => $request->achievementText3,
+                        'image4' => $achievementImg4Name ?? __('about.achievement.image4'),
+                        'title4' => $request->achievementTitle4,
+                        'text4' => $request->achievementText4,
+                    ],
+                ];
 
                 break;
+
             case 'contact':
+
+                if ($request->hasFile('headerImg')) {
+                    $image = $request->file('headerImg');
+                    $headerImgName = 'bg-9.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/background'), $headerImgName);
+                }
+
+                $newData = [
+                    'header' => [
+                        'title' => $request->headerTitle, 
+                        'subtitle' => $request->headerSub,
+                        'image' => $headerImgName ?? __('contact.header.image'),
+                    ],
+                    'content' => [
+                        'title' => __('contact.content.title'),
+                        'address' => $request->address,
+                        'phone' => $request->phone,
+                        'email' => $request->email,
+                    ],
+                    'form' => [
+                        'name' => __('contact.form.name'),
+                        'email' => __('contact.form.email'),
+                        'phone' => __('contact.form.phone'),
+                        'message' => __('contact.form.message'),
+                        'send' => __('contact.form.send'),
+                    ],
+                ];
 
                 break;
             case 'product':
+
+                if ($request->hasFile('headerImg')) {
+                    $image = $request->file('headerImg');
+                    $headerImgName = 'bg-10.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images/background'), $headerImgName);
+                }
+
+                $newData = [
+                    'header' => [
+                        'title' => $request->headerTitle, 
+                        'subtitle' => $request->headerSub,
+                        'image' => $headerImgName ?? __('contact.header.image'),
+                    ],
+                ];
 
                 break;
             default:
@@ -233,7 +507,7 @@ class SettingController extends Controller
         $content = "<?php\n\nreturn " . var_export($newData, true) . ";";
         File::put($filePath, $content);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Site Contents Updated Successfully.');
     }
 
     public function setLocale($lang)

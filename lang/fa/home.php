@@ -113,12 +113,12 @@ return [
         'image' => 'bg-5.jpg',
     ],
     'gallery' => [
-        'image1' => 'pf (1)',
-        'image2' => 'pf (2)',
-        'image3' => 'pf (3)',
-        'image4' => 'pf (4)',
-        'image5' => 'pf (5)',
-        'image6' => 'pf (6)',
+        'image1' => 'pf1.jpg',
+        'image2' => 'pf2.jpg',
+        'image3' => 'pf3.jpg',
+        'image4' => 'pf4.jpg',
+        'image5' => 'pf5.jpg',
+        'image6' => 'pf6.jpg',
     ],
     'recipe' => [
         'title' => 'دستور پخت',

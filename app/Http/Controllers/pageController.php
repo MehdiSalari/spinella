@@ -18,7 +18,7 @@ class pageController extends Controller
     public function blog()
     {
         $blogs = Blog::orderByDesc("created_at")->paginate(6);
-        return view('blog', compact('blogs', 'settings'));
+        return view('blog', compact('blogs'));
     }
 
     public function blogSingle($slug)

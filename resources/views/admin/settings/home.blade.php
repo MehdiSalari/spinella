@@ -1,10 +1,27 @@
 @extends('admin.layout.master')
 
 @section('content')
+
+@if(Session::has('success'))
+{{ toastify()->success(Session::get('success'), [
+        'duration' => 3000,
+]) }}
+@endif
+
 <div class="container-fluid">
         <div class="product-status mg-b-30" style="margin-top: 100px;">
-                <form action="{{ route('admin.settings.update', ['home', 'en']) }}" method="POST"
+                <button class="btn btn-primary" style="margin-bottom: 10px; font-weight: bold; font-family: 'Vazirmatn'"">
+                        @if (Session::get('locale') == 'en')
+                        <a style="color: #fff" href="{{ route('locale', 'fa') }}">تغییر محتوای فارسی</a>
+                        @else
+                        <a style="color: #fff" href="{{ route('locale', 'en') }}">Edit English Content</a>
+                        @endif
+                </button>
+
+                <form action="{{ route('admin.settings.update', ['home', Session::get('locale')]) }}" method="POST"
                         enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
                         <div class="row">
                                 <!-- Site Contents -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -12,9 +29,6 @@
                                         <div class="product-status-wrap">
                                                 <!-- Home -->
                                                 <h4>Home</h4>
-                                                <form action="{{ route('admin.settings.update', ['home', 'en']) }}" method="POST">
-                                                        @csrf
-                                                        @method('PATCH')
                                                         <!-- Slider 1 -->
                                                         <h5 style="color: #fff; font-weight: bold;">Slider 1</h5>
                                                         <div class="input-group mg-b-pro-edt">
@@ -24,7 +38,7 @@
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Title"
                                                                         value="{{ __('home.slider.slider1.title') }}"
-                                                                        name="slider1Title" id="edit-product-title"
+                                                                        name="sliderTitle1" id="edit-product-title"
                                                                         required>
                                                         </div>
                                                         <div class="input-group mg-b-pro-edt">
@@ -317,7 +331,7 @@
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Subtitle"
                                                                         value="{{ __('home.banner.banner1.text') }}"
-                                                                        name="bannerSub1" id="edit-product-title"
+                                                                        name="bannerText1" id="edit-product-title"
                                                                         required>
                                                         </div>
                                                         <div class="input-group mg-b-pro-edt">
@@ -345,102 +359,141 @@
                                                         </div>
                                                         <div class="input-group mg-b-pro-edt">
                                                                 <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 90%" type="text"
-                                                                        class="form-control" placeholder="Name"
-                                                                        value="{{ __('home.products.product1.name') }}"
-                                                                        name="productName1" id="edit-product-title"
-                                                                        required>
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 100%" type="text"
-                                                                        class="form-control" placeholder="Description"
-                                                                        value="{{ __('home.products.product1.desc') }}"
-                                                                        name="productDesc1" id="edit-product-title"
-                                                                        required>
-                                                        </div>
-                                                        <div class="input-group mg-b-pro-edt">
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 90%" type="text"
-                                                                        class="form-control" placeholder="Name"
-                                                                        value="{{ __('home.products.product2.name') }}"
-                                                                        name="productName2" id="edit-product-title"
-                                                                        required>
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 100%" type="text"
-                                                                        class="form-control" placeholder="Description"
-                                                                        value="{{ __('home.products.product2.desc') }}"
-                                                                        name="productDesc2" id="edit-product-title"
-                                                                        required>
-                                                        </div>
-                                                        <div class="input-group mg-b-pro-edt">
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 90%" type="text"
-                                                                        class="form-control" placeholder="Name"
-                                                                        value="{{ __('home.products.product3.name') }}"
-                                                                        name="productName3" id="edit-product-title"
-                                                                        required>
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 100%" type="text"
-                                                                        class="form-control" placeholder="Description"
-                                                                        value="{{ __('home.products.product3.desc') }}"
-                                                                        name="productDesc3" id="edit-product-title"
-                                                                        required>
-                                                        </div>
-                                                        <div class="input-group mg-b-pro-edt">
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 90%" type="text"
-                                                                        class="form-control" placeholder="Name"
-                                                                        value="{{ __('home.products.product4.name') }}"
-                                                                        name="productName4" id="edit-product-title"
-                                                                        required>
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 100%" type="text"
-                                                                        class="form-control" placeholder="Description"
-                                                                        value="{{ __('home.products.product4.desc') }}"
-                                                                        name="productDesc4" id="edit-product-title"
-                                                                        required>
-                                                        </div>
-                                                        <div class="input-group mg-b-pro-edt">
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 90%" type="text"
-                                                                        class="form-control" placeholder="Name"
-                                                                        value="{{ __('home.products.product5.name') }}"
-                                                                        name="productName5" id="edit-product-title"
-                                                                        required>
-                                                                <span class="input-group-addon"><i
-                                                                                class="icon nalika-edit"
-                                                                                aria-hidden="true"></i></span>
-                                                                <input style="width: 100%" type="text"
-                                                                        class="form-control" placeholder="Description"
-                                                                        value="{{ __('home.products.product5.desc') }}"
-                                                                        name="productDesc5" id="edit-product-title"
-                                                                        required>
-                                                        </div>
-                                                        <div class="input-group mg-b-pro-edt">
-                                                                <span class="input-group-addon"><i
                                                                                 class="icon nalika-picture"
                                                                                 aria-hidden="true"></i></span>
                                                                 <input type="file" class="form-control"
                                                                         placeholder="Banner" name="productImg"
                                                                         id="edit-product-title" accept="image/*"
                                                                         value="{{ __('home.products.image') }}">
+                                                        </div>
+                                                        <hr style="width: 60%; margin: 10px auto; display: flex;">
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 95%" type="text"
+                                                                        class="form-control" placeholder="Name"
+                                                                        value="{{ __('home.products.product1.name') }}"
+                                                                        name="productName1" id="edit-product-title">
+                                                                <span class="input-group-addon"><i
+                                                                class="icon nalika-picture"
+                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 100%" type="file"
+                                                                        class="form-control" placeholder="Image"
+                                                                        value="{{ __('home.products.product1.image') }}"
+                                                                        name="productImg1" id="edit-product-title">
+                                                        </div>
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <textarea style="width: 100%; resize: none" 
+                                                                rows="3" class="form-control" placeholder="Description" 
+                                                                name="productDesc1" id="edit-product-title" required>{{ __('home.products.product1.desc') }}</textarea>
+                                                        </div>
+                                                        <hr style="width: 60%; margin: 10px auto; display: flex;">
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 95%" type="text"
+                                                                        class="form-control" placeholder="Name"
+                                                                        value="{{ __('home.products.product2.name') }}"
+                                                                        name="productName2" id="edit-product-title"
+                                                                        required>
+                                                                <span class="input-group-addon"><i
+                                                                class="icon nalika-picture"
+                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 100%" type="file"
+                                                                        class="form-control" placeholder="Image"
+                                                                        value="{{ __('home.products.product2.image') }}"
+                                                                        name="productImg2" id="edit-product-title">
+                                                        </div>
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <textarea style="width: 100%; resize: none" 
+                                                                rows="3" class="form-control" placeholder="Description" 
+                                                                name="productDesc2" id="edit-product-title" required>{{ __('home.products.product2.desc') }}</textarea>
+                                                        </div>
+                                                        <hr style="width: 60%; margin: 10px auto; display: flex;">
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 95%" type="text"
+                                                                        class="form-control" placeholder="Name"
+                                                                        value="{{ __('home.products.product3.name') }}"
+                                                                        name="productName3" id="edit-product-title"
+                                                                        required>
+                                                                <span class="input-group-addon"><i
+                                                                class="icon nalika-picture"
+                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 100%" type="file"
+                                                                        class="form-control" placeholder="Image"
+                                                                        value="{{ __('home.products.product3.image') }}"
+                                                                        name="productImg3" id="edit-product-title">
+                                                        </div>
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <textarea style="width: 100%; resize: none" 
+                                                                rows="3" class="form-control" placeholder="Description" 
+                                                                name="productDesc3" id="edit-product-title" required>{{ __('home.products.product3.desc') }}</textarea>
+                                                        </div>
+                                                        <hr style="width: 60%; margin: 10px auto; display: flex;">
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 95%" type="text"
+                                                                        class="form-control" placeholder="Name"
+                                                                        value="{{ __('home.products.product4.name') }}"
+                                                                        name="productName4" id="edit-product-title"
+                                                                        required>
+                                                                <span class="input-group-addon"><i
+                                                                class="icon nalika-picture"
+                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 100%" type="file"
+                                                                        class="form-control" placeholder="Image"
+                                                                        value="{{ __('home.products.product4.image') }}"
+                                                                        name="productImg4" id="edit-product-title">
+                                                        </div>
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <textarea style="width: 100%; resize: none" 
+                                                                rows="3" class="form-control" placeholder="Description" 
+                                                                name="productDesc4" id="edit-product-title" required>{{ __('home.products.product4.desc') }}</textarea>
+                                                        </div>
+                                                        <hr style="width: 60%; margin: 10px auto; display: flex;">
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 95%" type="text"
+                                                                        class="form-control" placeholder="Name"
+                                                                        value="{{ __('home.products.product5.name') }}"
+                                                                        name="productName5" id="edit-product-title"
+                                                                        required>
+                                                                <span class="input-group-addon"><i
+                                                                class="icon nalika-picture"
+                                                                aria-hidden="true"></i></span>
+                                                                <input style="width: 100%" type="file"
+                                                                        class="form-control" placeholder="Image"
+                                                                        value="{{ __('home.products.product5.image') }}"
+                                                                        name="productImg5" id="edit-product-title">
+                                                        </div>
+                                                        <div class="input-group mg-b-pro-edt">
+                                                                <span class="input-group-addon"><i
+                                                                                class="icon nalika-edit"
+                                                                                aria-hidden="true"></i></span>
+                                                                <textarea style="width: 100%; resize: none" 
+                                                                rows="3" class="form-control" placeholder="Description" 
+                                                                name="productDesc5" id="edit-product-title" required>{{ __('home.products.product5.desc') }}</textarea>
                                                         </div>
 
                                                         <!-- Banner 2 -->
@@ -463,7 +516,7 @@
                                                                 <input type="text" class="form-control"
                                                                         placeholder="Subtitle"
                                                                         value="{{ __('home.banner.banner2.text') }}"
-                                                                        name="bannerSub2" id="edit-product-title"
+                                                                        name="bannerText2" id="edit-product-title"
                                                                         required>
                                                         </div>
                                                         <div class="input-group mg-b-pro-edt">
@@ -620,7 +673,7 @@
                                                         <hr style="margin-top: 50px;">
                                                         <h5 style="color: #fff; font-weight: bold;">Footer</h5>
 
-                                                        <h6 style="color: #fff; font-weight: bold;">Our Location</h6>
+                                                        <h6 style="color: #fff; font-weight: bold;">Contact Us</h6>
 
                                                         <div class="input-group mg-b-pro-edt">
                                                                 <span class="input-group-addon"><i

@@ -1,10 +1,26 @@
 @extends('admin.layout.master')
 
 @section('content')
+
+@if(Session::has('success'))
+{{ toastify()->success(Session::get('success'), [
+        'duration' => 3000,
+]) }}
+@endif
+
 <div class="container-fluid">
     <div class="product-status mg-b-30" style="margin-top: 100px;">
-        <form action="{{ route('admin.settings.update', ['about-us', 'en']) }}" method="POST"
+        <button class="btn btn-primary" style="margin-bottom: 10px; font-weight: bold; font-family: 'Vazirmatn'"">
+                @if (Session::get('locale') == 'en')
+                <a style="color: #fff" href="{{ route('locale', 'fa') }}">تغییر محتوای فارسی</a>
+                @else
+                <a style="color: #fff" href="{{ route('locale', 'en') }}">Edit English Content</a>
+                @endif
+        </button>
+        <form action="{{ route('admin.settings.update', ['about', Session::get('locale')]) }}" method="POST"
             enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
             <div class="row">
                 <!-- Site Contents -->
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -22,7 +38,7 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Subtitle"
-                                value="{{ __('about.header.subtitle') }}" name="headerSubtitle" id="edit-product-title"
+                                value="{{ __('about.header.subtitle') }}" name="headerSub" id="edit-product-title"
                                 required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
@@ -38,23 +54,23 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Title"
-                                value="{{ __('about.body.title') }}" name="headerContent" id="edit-product-title"
+                                value="{{ __('about.body.title') }}" name="bodyTitle" id="edit-product-title"
                                 required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Paragraph 1"
-                                value="{{ __('about.body.p1') }}" name="subContent" id="edit-product-title" required>
+                                value="{{ __('about.body.p1') }}" name="bodyP1" id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Paragraph 2"
-                                value="{{ __('about.body.p2') }}" name="subContent2" id="edit-product-title" required>
+                                value="{{ __('about.body.p2') }}" name="bodyP2" id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Paragraph 3"
-                                value="{{ __('about.body.p3') }}" name="subContent3" id="edit-product-title" required>
+                                value="{{ __('about.body.p3') }}" name="bodyP3" id="edit-product-title" required>
                         </div>
                         <!-- <hr style="margin-top: 30px;"> -->
                         <div class="col-lg-6">
@@ -68,7 +84,7 @@
                                 <span class="input-group-addon"><i class="icon nalika-edit"
                                         aria-hidden="true"></i></span>
                                 <input type="number" class="form-control" placeholder="Number +"
-                                    value="{{ __('about.body.feedback.number') }}" name="feedbackNumber"
+                                    value="{{ __('about.body.feedback.number') }}" name="feedbackNum"
                                     id="edit-product-title" required>
                             </div>
                             <div class="input-group mg-b-pro-edt">
@@ -84,7 +100,7 @@
                                 <span class="input-group-addon"><i class="icon nalika-edit"
                                         aria-hidden="true"></i></span>
                                 <input type="number" class="form-control" placeholder="Percent %"
-                                    value="{{ __('about.body.percent.number') }}" name="percentNumber"
+                                    value="{{ __('about.body.percent.number') }}" name="percentNum"
                                     id="edit-product-title" required>
                             </div>
                             <div class="input-group mg-b-pro-edt">
@@ -114,7 +130,7 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Subtitle"
-                                value="{{ __('about.banner.subtitle') }}" name="bannerSubtitle" id="edit-product-title"
+                                value="{{ __('about.banner.subtitle') }}" name="bannerSub" id="edit-product-title"
                                 required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
@@ -131,21 +147,21 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-picture"
                                     aria-hidden="true"></i></span>
-                            <input type="file" class="form-control" placeholder="Image" name="achievementsImg1"
+                            <input type="file" class="form-control" placeholder="Image" name="achievementImg1"
                                 id="edit-product-title" accept="image/*" value="{{ __('about.achievement.image1') }}">
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Title"
-                                value="{{ __('about.achievement.title1') }}" name="achievementsTitle1"
+                                value="{{ __('about.achievement.title1') }}" name="achievementTitle1"
                                 id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Text"
-                                value="{{ __('about.achievement.text1') }}" name="achievementsText1"
+                                value="{{ __('about.achievement.text1') }}" name="achievementText1"
                                 id="edit-product-title" required>
                         </div>
 
@@ -153,21 +169,21 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-picture"
                                     aria-hidden="true"></i></span>
-                            <input type="file" class="form-control" placeholder="Image" name="achievementsImg2"
+                            <input type="file" class="form-control" placeholder="Image" name="achievementImg2"
                                 id="edit-product-title" accept="image/*" value="{{ __('about.achievement.image2') }}">
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Title"
-                                value="{{ __('about.achievement.title2') }}" name="achievementsTitle2"
+                                value="{{ __('about.achievement.title2') }}" name="achievementTitle2"
                                 id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Text"
-                                value="{{ __('about.achievement.text2') }}" name="achievementsText2"
+                                value="{{ __('about.achievement.text2') }}" name="achievementText2"
                                 id="edit-product-title" required>
                         </div>
 
@@ -175,21 +191,21 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-picture"
                                     aria-hidden="true"></i></span>
-                            <input type="file" class="form-control" placeholder="Image" name="achievementsImg3"
+                            <input type="file" class="form-control" placeholder="Image" name="achievementImg3"
                                 id="edit-product-title" accept="image/*" value="{{ __('about.achievement.image3') }}">
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Title"
-                                value="{{ __('about.achievement.title3') }}" name="achievementsTitle3"
+                                value="{{ __('about.achievement.title3') }}" name="achievementTitle3"
                                 id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Text"
-                                value="{{ __('about.achievement.text3') }}" name="achievementsText3"
+                                value="{{ __('about.achievement.text3') }}" name="achievementText3"
                                 id="edit-product-title" required>
                         </div>
 
@@ -197,21 +213,21 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-picture"
                                     aria-hidden="true"></i></span>
-                            <input type="file" class="form-control" placeholder="Image" name="achievementsImg4"
+                            <input type="file" class="form-control" placeholder="Image" name="achievementImg4"
                                 id="edit-product-title" accept="image/*" value="{{ __('about.achievement.image4') }}">
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Title"
-                                value="{{ __('about.achievement.title4') }}" name="achievementsTitle4"
+                                value="{{ __('about.achievement.title4') }}" name="achievementTitle4"
                                 id="edit-product-title" required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit"
                                     aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Text"
-                                value="{{ __('about.achievement.text4') }}" name="achievementsText4"
+                                value="{{ __('about.achievement.text4') }}" name="achievementText4"
                                 id="edit-product-title" required>
                         </div>
                     </div>

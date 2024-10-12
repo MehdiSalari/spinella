@@ -1,8 +1,10 @@
 <?php
-return [
-    'header' => [
-        'title' => 'Spinella', 
-        'subtitle' => 'Products',
-        'image' => 'bg-10.jpg',
-    ],
-];
+
+return array (
+  'header' => 
+  array (
+    'title' => 'Spinella',
+    'subtitle' => 'Products',
+    'image' => 'bg-9.jpg',
+  ),
+);

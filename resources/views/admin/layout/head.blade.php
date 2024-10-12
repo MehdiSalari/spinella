@@ -73,5 +73,10 @@
     ============================================ -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- Toastify
+    ============================================ -->
+    @toastifyCss
+    @toastifyJs
+    
     @stack('style')
 </head>

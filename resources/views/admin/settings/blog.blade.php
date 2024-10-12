@@ -1,9 +1,25 @@
 @extends('admin.layout.master')
 
 @section('content')
+
+@if(Session::has('success'))
+{{ toastify()->success(Session::get('success'), [
+        'duration' => 3000,
+]) }}
+@endif
+
 <div class="container-fluid">
     <div class="product-status mg-b-30" style="margin-top: 100px;">
-        <form action="{{ route('admin.settings.update', ['blog', 'en']) }}" method="POST" enctype="multipart/form-data">
+        <button class="btn btn-primary" style="margin-bottom: 10px; font-weight: bold; font-family: 'Vazirmatn'"">
+                @if (Session::get('locale') == 'en')
+                <a style="color: #fff" href="{{ route('locale', 'fa') }}">تغییر محتوای فارسی</a>
+                @else
+                <a style="color: #fff" href="{{ route('locale', 'en') }}">Edit English Content</a>
+                @endif
+        </button>
+        <form action="{{ route('admin.settings.update', ['blog', Session::get('locale')]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
             <div class="row">
                 <!-- Site Contents -->
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -21,13 +37,13 @@
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Subtitle"
-                                value="{{ __('blog.header.subtitle') }}" name="headerSubtitle" id="edit-product-title"
+                                value="{{ __('blog.header.subtitle') }}" name="headerSub" id="edit-product-title"
                                 required>
                         </div>
                         <div class="input-group mg-b-pro-edt">
                             <span class="input-group-addon"><i class="icon nalika-picture"
                                     aria-hidden="true"></i></span>
-                            <input type="file" class="form-control" placeholder="Text" name="hraderImg"
+                            <input type="file" class="form-control" placeholder="Text" name="headerImg"
                                 id="edit-product-title" accept="image/*" value="{{ __('blog.header.image') }}">
                         </div>
                     </div>

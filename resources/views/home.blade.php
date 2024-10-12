@@ -306,13 +306,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(1).jpg') }}" title="Chocolate Croissant">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image1')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(1).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image1')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
@@ -321,13 +321,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(2).jpg') }}" title="Croissant">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image2')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(2).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image2')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
@@ -336,13 +336,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(3).jpg') }}" title="Doughnuts">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image3')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(3).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image3')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
@@ -351,13 +351,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(4).jpg') }}" title="Wheat Bread">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image4')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(4).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image4')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
@@ -366,13 +366,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(5).jpg') }}" title="Butterfly Cookies">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image5')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(5).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image5')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
@@ -381,13 +381,13 @@
                                 <!-- gallery item -->
                                 <div class="item">
                                     <figure class="position-relative">
-                                        <a href="{{ asset('assets/images/menu/view/pf%20(6).jpg') }}" title="Chocolate Puff Pastry">
+                                        <a href="{{ asset("assets/images/menu/view/" . __('home.gallery.image6')) }}" title="spinellasaffron.com">
                                             <span class="d-hover">
                                                 <span class="d-text">
                                                     <span class="d-cap">View</span>
                                                 </span>
                                             </span>
-                                            <img class="img-gall" src="{{ asset('assets/images/menu/pf%20(6).jpg') }}" alt="">
+                                            <img class="img-gall" src="{{ asset('assets/images/menu/' . __('home.gallery.image6')) }}" alt="">
                                         </a>
                                     </figure>
                                 </div>
