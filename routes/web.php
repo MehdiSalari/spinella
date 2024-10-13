@@ -67,4 +67,8 @@ Route::middleware(['auth'])->prefix('admin')->group( function () {
 
     //admins
     Route::get('/admins', [adminController::class, 'admins'])->name('admin.admins.index');
+    Route::post('/admins', [adminController::class, 'createAdmin'])->name('admin.admins.store');
+    Route::patch('/admins/{admin}', [adminController::class, 'update'])->name('admin.admins.update');
+    Route::delete('/admins/{admin}', [adminController::class, 'destroy'])->name('admin.admins.destroy');
+    Route::post('/admins/status', [adminController::class, 'updateStatus'])->name('admin.admins.status');
 });

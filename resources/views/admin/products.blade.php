@@ -164,23 +164,14 @@
                                     <div class="input-group mg-b-pro-edt">
                                         <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Product Title" name="title" value="{{ old('title') }}" required>
-                                        @error('title')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                     <div class="input-group mg-b-pro-edt">
                                         <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Price" name="price" value="{{ old('price') }}">
-                                        @error('price')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                     <div class="input-group mg-b-pro-edt">
                                         <span class="input-group-addon"><i class="icon nalika-menu-task" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control @error('productStock') is-invalid @enderror" placeholder="Stock" name="productStock" value="{{ old('productStock') }}">
-                                        @error('productStock')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                     <div class="input-group mg-b-pro-edt">
                                         <span class="input-group-addon"><i class="icon nalika-folder" aria-hidden="true"></i></span>
@@ -191,9 +182,6 @@
                                                 <option value="{{ $category['id'] }}" {{ old('category_id') == $category['id'] ? 'selected' : '' }}>{{ $category['title'] }}</option>
                                             <?php endforeach; ?>
                                         </select>
-                                        @error('category_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -213,9 +201,6 @@
                         </div>
                         <div class="row mg-b-pro-edt" style="margin: 10px 15px">
                             <textarea style="resize: none" rows="3" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Product Description">{{ old('description') }}</textarea>
-                            @error('description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="row" style="margin: 20px 15px;">
                             <div class="text-center">

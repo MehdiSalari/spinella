@@ -35,7 +35,7 @@
                             <li><a title="Blog" href="{{ route('admin.blog.index') }}"><span class="mini-sub-pro">Posts</span></a></li>
                         </ul>
                     </li>
-                    <li @if (Route::currentRouteName() == 'admin.settings.admins' || Route::currentRouteName() == 'admin.settings.home' || Route::currentRouteName() == 'admin.settings.blog' || Route::currentRouteName() == 'admin.settings.about-us' || Route::currentRouteName() == 'admin.settings.contact-us' || Route::currentRouteName() == 'admin.settings.products')
+                    <li @if (Route::currentRouteName() == 'admin.admins.index' || Route::currentRouteName() == 'admin.settings.home' || Route::currentRouteName() == 'admin.settings.blog' || Route::currentRouteName() == 'admin.settings.about-us' || Route::currentRouteName() == 'admin.settings.contact-us' || Route::currentRouteName() == 'admin.settings.products')
                         class="active"
                     @endif >
                         <a class="has-arrow" href="#" aria-expanded="false">
@@ -45,7 +45,11 @@
                         <ul class="submenu-angle" aria-expanded="false">
 
                             <!-- Admins Submenu -->
+                            @if (Auth::user()->role == 'superadmin')
                             <li><a title="Admins" href="{{ route('admin.admins.index') }}"><i class="icon nalika-user icon-wrap"></i><span class="mini-sub-pro">Admins</span></a></li>
+                            @else
+                            <li><a style="cursor: not-allowed; pointer-events: all !important;" title="You are not an Super Admin" href="#"><i class="icon nalika-user icon-wrap"></i><span class="mini-sub-pro">Admins</span></a></li>
+                            @endif
                             
                             <!-- Site Content Submenu -->
                             <li @if (Route::currentRouteName() == 'admin.settings.home' || Route::currentRouteName() == 'admin.settings.blog' || Route::currentRouteName() == 'admin.settings.about-us' || Route::currentRouteName() == 'admin.settings.contact-us' || Route::currentRouteName() == 'admin.settings.products') 

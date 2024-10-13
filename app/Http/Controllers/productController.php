@@ -50,41 +50,41 @@ class productController extends Controller
     public function update(Request $request, $id)
     {
         try{
-        $product = Product::find($id);
-        // dd($request->all());
-        $request->validate([
-            "title" => "required|string",
-            "category_id" => "required|numeric",
-            "description" => "required|min:10",
-            "image" => "image",
-        ]);
+            $product = Product::find($id);
+            // dd($request->all());
+            $request->validate([
+                "title" => "required|string",
+                "category_id" => "required|numeric",
+                "description" => "required|min:10",
+                "image" => "image",
+            ]);
 
-        $slug = createSlug($request->input("title"));
-        $slug = makeUniqueSlug($slug, 'product');
-        $image = $product->image;
-        if ($request->hasFile("image")) {
-            $image = $request->file("image");
-            $imageName = $slug . '.' . $image->getClientOriginalExtension();
-            $is_moved = $image->move(public_path("assets/images/products"), $imageName);;
-            if ($is_moved) {
-                $image = $imageName;
-            } else {
-                throw new Exception("Image Upload Failed");
+            $slug = createSlug($request->input("title"));
+            $slug = makeUniqueSlug($slug, 'product');
+            $image = $product->image;
+            if ($request->hasFile("image")) {
+                $image = $request->file("image");
+                $imageName = $slug . '.' . $image->getClientOriginalExtension();
+                $is_moved = $image->move(public_path("assets/images/products"), $imageName);;
+                if ($is_moved) {
+                    $image = $imageName;
+                } else {
+                    throw new Exception("Image Upload Failed");
+                }
             }
-        }
 
-        $product->slug = $slug;
-        $product->stock = $request->input("stock");
-        $product->title = $request->input("title");
-        $product->category_id = $request->input("category_id");
-        $product->description = $request->input("description");
-        $product->price = $request->input("price");
-        $product->image = $image;
-        $product->save();
-        return redirect()->back();
-    } catch (Exception $e) {
-        dd($e->getMessage() , $e->getLine());
-    }
+            $product->slug = $slug;
+            $product->stock = $request->input("stock");
+            $product->title = $request->input("title");
+            $product->category_id = $request->input("category_id");
+            $product->description = $request->input("description");
+            $product->price = $request->input("price");
+            $product->image = $image;
+            $product->save();
+            return redirect()->back();
+        } catch (Exception $e) {
+            dd($e->getMessage() , $e->getLine());
+        }
     }
 
     public function delete($id)

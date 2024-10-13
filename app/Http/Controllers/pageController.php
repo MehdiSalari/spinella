@@ -39,7 +39,9 @@ class pageController extends Controller
 
     public function products()
     {
+        //** uncommet line below to active products link */
         return redirect('/');
+
         $products = Product::all();
         $categories = Category::all();
         return view('products', compact('products', 'categories'));
